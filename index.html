@@ -608,19 +608,19 @@
         <!-- Stats Panel -->
         <div class="stats-panel">
             <div class="stat-item">
-                <div class="stat-value" id="total-students">0</div>
+                <div class="stat-value" id="total-students">1325</div>
                 <div class="stat-label">Total Students</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value" id="students-44-plus">0</div>
+                <div class="stat-value" id="students-44-plus">45</div>
                 <div class="stat-label">44+ Marks</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value" id="students-25-plus">0</div>
+                <div class="stat-value" id="students-25-plus">289</div>
                 <div class="stat-label">25+ Marks</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value" id="students-17-plus">0</div>
+                <div class="stat-value" id="students-17-plus">512</div>
                 <div class="stat-label">17+ Marks</div>
             </div>
         </div>
@@ -759,16 +759,40 @@
         const studentsData = [
             { accessCode: "WHITE-COAT-WORRIORS--SKSK-X7JIF", studentName: "Shahzib Khan", fatherName: "Shahniaz Khan", email: "lewan dardariz bannu . kpk", mobile: "3141993528", city: "Bannu", registrationDate: "22/11/2025, 07:00:01", totalQuestions: "50", correctAnswers: "44", incorrectAnswers: "6", unanswered: "0", finalScore: "44 / 50", submissionDate: "22/11/2025, 07:20:20" },
             { accessCode: "WHITE-COAT-WORRIORS--SAAK-EAJ2P", studentName: "Sikander Ali", fatherName: "Abdul Kareem", email: "sikanderalimarfani@gmail.com", mobile: "3102336373", city: "Nawabshah", registrationDate: "22/11/2025, 07:11:44", totalQuestions: "50", correctAnswers: "50", incorrectAnswers: "0", unanswered: "0", finalScore: "50 / 50", submissionDate: "22/11/2025, 07:49:22" },
+            { accessCode: "WHITE-COAT-WORRIORS--HRAR-VAT4B", studentName: "Hadi rizvi", fatherName: "Anir rizvi", email: "haadirizzvi@gmail.com", mobile: "923458230123", city: "Karachi/Sindh", registrationDate: "22/11/2025, 07:12:25", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--FANA-1DU7Z", studentName: "Farhan Ahmed", fatherName: "Nisar Ahmed", email: "drnisarpeds@gmail.com", mobile: "3151743134", city: "Kashmore", registrationDate: "22/11/2025, 07:37:47", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
             { accessCode: "WHITE-COAT-WORRIORS--AGR-9U21F", studentName: "Ayesha", fatherName: "Ghulam Rasool", email: ".", mobile: "3457258245", city: "Rawalpindi", registrationDate: "22/11/2025, 07:43:27", totalQuestions: "28", correctAnswers: "10", incorrectAnswers: "18", unanswered: "0", finalScore: "10 / 28", submissionDate: "22/11/2025, 08:04:22" },
+            { accessCode: "WHITE-COAT-WORRIORS--KLMA-02VKZ", studentName: "Kunzal Lakhair", fatherName: "Muhammad Ali", email: "kunzallakhair@gmail.com", mobile: "3133244519", city: "K n shah district dadu", registrationDate: "22/11/2025, 07:46:09", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--KLMA-KCUOH", studentName: "Kunzal Lakhair", fatherName: "Muhammad Ali", email: "kunzallakhair@gmail.com", mobile: "3133244519", city: "K n shah district dadu", registrationDate: "22/11/2025, 07:48:17", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
             { accessCode: "WHITE-COAT-WORRIORS--AGR-RCOAQ", studentName: "Ayesha", fatherName: "Ghulam Rasool", email: ".", mobile: "3457258245", city: "Rawalpindi", registrationDate: "22/11/2025, 08:07:25", totalQuestions: "50", correctAnswers: "50", incorrectAnswers: "0", unanswered: "0", finalScore: "50 / 50", submissionDate: "22/11/2025, 08:18:07" },
+            { accessCode: "WHITE-COAT-WORRIORS--AHGB-6YPU7", studentName: "Ameer hamza", fatherName: "Ghous baksh", email: "ameerhamzabuzdar18@gmail.com", mobile: "3467946354", city: "Dgk", registrationDate: "22/11/2025, 08:08:40", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
             { accessCode: "WHITE-COAT-WORRIORS--KLMA-UUOLY", studentName: "Kunzal Lakhair", fatherName: "Muhammad Ali", email: "kunzallakhair@gmail.com", mobile: "3133244519", city: "K n shah district dadu", registrationDate: "22/11/2025, 08:09:50", totalQuestions: "50", correctAnswers: "50", incorrectAnswers: "0", unanswered: "0", finalScore: "50 / 50", submissionDate: "22/11/2025, 08:14:03" },
             { accessCode: "WHITE-COAT-WORRIORS--AA-R0S24", studentName: "Areeba", fatherName: "Allahdino", email: "Azharbajeer511@gmail.com", mobile: "3361932199", city: "City : Diplo district tharparker", registrationDate: "22/11/2025, 08:13:17", totalQuestions: "50", correctAnswers: "43", incorrectAnswers: "7", unanswered: "0", finalScore: "43 / 50", submissionDate: "22/11/2025, 08:47:43" },
+            { accessCode: "WHITE-COAT-WORRIORS--SMI-SOXKZ", studentName: "Sania", fatherName: "Muhammad Ismail", email: "saniakhansania311@gmail.com", mobile: "3323943193", city: "Hyderabad", registrationDate: "22/11/2025, 08:19:55", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--SMI-UT4RN", studentName: "Sania", fatherName: "Muhammad Ismail", email: "saniakhansania311@gmail.com", mobile: "3323943193", city: "Hyderabad", registrationDate: "22/11/2025, 08:34:39", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
             { accessCode: "WHITE-COAT-WORRIORS--FAD-WYLH0", studentName: "Fatima", fatherName: "Allah Ditto", email: "muhammadahmedkolachi333@gmail.com", mobile: "0320-2001676", city: "KARACHI/dadu", registrationDate: "22/11/2025, 08:40:16", totalQuestions: "50", correctAnswers: "17", incorrectAnswers: "33", unanswered: "0", finalScore: "17 / 50", submissionDate: "22/11/2025, 09:03:28" },
+            { accessCode: "WHITE-COAT-WORRIORS--AMH-VTO2I", studentName: "Alveera", fatherName: "Manzoor Hussain", email: "alveerajannat37@gmail.com", mobile: "923121787646", city: "Multan", registrationDate: "22/11/2025, 10:25:05", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--AJMH-HZJ3M", studentName: "Alveera Jannat", fatherName: "Manzoor Hussain", email: "hunzalrajpoot50@gmail.com", mobile: "923193611148", city: "Multan", registrationDate: "22/11/2025, 10:36:13", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--AJMH-EI8EX", studentName: "Alveera Jannat", fatherName: "Manzoor Hussain", email: "hunzalrajpoot50@gmail.com", mobile: "923193611148", city: "Multan", registrationDate: "22/11/2025, 10:36:52", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--AJMH-JKWNT", studentName: "Alveera Jannat", fatherName: "Manzoor Hussain", email: "hunzalrajpoot50@gmail.com", mobile: "923193611148", city: "Multan", registrationDate: "22/11/2025, 10:51:00", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--AJMH-AWS0P", studentName: "Alveera Jannat", fatherName: "Manzoor Hussain", email: "hunzalrajpoot50@gmail.com", mobile: "923193611148", city: "Multan", registrationDate: "22/11/2025, 10:53:10", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--AJMH-WP9DI", studentName: "Alveera Jannat", fatherName: "Manzoor Hussain", email: "hunzalrajpoot50@gmail.com", mobile: "923193611148", city: "Multan", registrationDate: "22/11/2025, 10:53:44", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--ZZ-G3Y59", studentName: "Zahra", fatherName: "Zafar", email: "zahrazafar001@gmail.com", mobile: "3465721459", city: "Taxila", registrationDate: "22/11/2025, 10:53:49", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--RA-U6Z4H", studentName: "roohan", fatherName: "amjad", email: "roohan00@gmail.com", mobile: "3113032735", city: "thatta", registrationDate: "22/11/2025, 11:02:01", totalQuestions: "2", correctAnswers: "1", incorrectAnswers: "1", unanswered: "0", finalScore: "1 / 2", submissionDate: "22/11/2025, 11:12:25" },
             { accessCode: "WHITE-COAT-WORRIORS--AJMH-KLKLT", studentName: "Alveera Jannat", fatherName: "Manzoor Hussain", email: "hunzalrajpoot50@gmail.com", mobile: "923193611148", city: "Multan", registrationDate: "22/11/2025, 11:19:12", totalQuestions: "50", correctAnswers: "50", incorrectAnswers: "0", unanswered: "0", finalScore: "50 / 50", submissionDate: "22/11/2025, 11:28:02" },
-            { accessCode: "WHITE-COAT-WORRIORS--ROOHAN-U6Z4H", studentName: "Roohan", fatherName: "Amjad", email: "roohan00@gmail.com", mobile: "3113032735", city: "Thatta", registrationDate: "22/11/2025, 11:02:01", totalQuestions: "2", correctAnswers: "1", incorrectAnswers: "1", unanswered: "0", finalScore: "1 / 2", submissionDate: "22/11/2025, 11:12:25" },
-            { accessCode: "WHITE-COAT-WORRIORS--HAMA-QM7Q2", studentName: "Hira Ashraf", fatherName: "M Ashraf", email: "cutieclouds92@gmail.com", mobile: "3058592833", city: "Kohat", registrationDate: "11/22/2025, 1:03:07 PM", totalQuestions: "50", correctAnswers: "47", incorrectAnswers: "3", unanswered: "0", finalScore: "47 / 50", submissionDate: "11/22/2025, 1:39:11 PM" },
+            { accessCode: "WHITE-COAT-WORRIORS--AS-9AB6J", studentName: "Aneel", fatherName: "Sawan", email: "aneelmenghwar930@gmail.com", mobile: "923422233076", city: "Umarkot", registrationDate: "11/22/2025, 11:27:24 AM", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--HAMA-K5MLP", studentName: "Hira Ashraf", fatherName: "M Ashraf", email: "cutieclouds92@gmail.com", mobile: "3058592833", city: "Kohat", registrationDate: "11/22/2025, 12:36:55 PM", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--MZ-AB752", studentName: "Mishaal", fatherName: "Zahid", email: "missmishaal101@gmail.com", mobile: "3323566020", city: "Karachi", registrationDate: "22/11/2025, 12:39:11", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--MZ-02A84", studentName: "Mishaal", fatherName: "Zahid", email: "missmishaal101@gmail.com", mobile: "3323566020", city: "Karachi", registrationDate: "22/11/2025, 12:41:19", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--JKM-XLR3Y", studentName: "Jeewat Kumar", fatherName: "Mitho", email: "jeevatk56@gmail.com", mobile: "3091130771", city: "Mirpurkhas", registrationDate: "22/11/2025, 12:49:29", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--FSS-ZI2ZC", studentName: "Faryal Syed", fatherName: "Saeed", email: "faryalsyed.220@gmail.com", mobile: "3199852101", city: "Wahcant", registrationDate: "22/11/2025, 12:49:36", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--ARASJ-UJETE", studentName: "Adil Rahman", fatherName: "Ali shah jehan", email: "adil1236788@gmail.com", mobile: "3199423022", city: "Lakki Marwat", registrationDate: "22/11/2025, 12:52:58", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
             { accessCode: "WHITE-COAT-WORRIORS--SKSK-PT9NO", studentName: "Sadaf khan", fatherName: "Samandar khan", email: "samandar3616@gmail.com", mobile: "923334564410", city: "Layyah", registrationDate: "22/11/2025, 12:56:17", totalQuestions: "50", correctAnswers: "29", incorrectAnswers: "21", unanswered: "0", finalScore: "29 / 50", submissionDate: "22/11/2025, 13:24:46" },
+            { accessCode: "WHITE-COAT-WORRIORS--ZAA-SD7LK", studentName: "Zainab", fatherName: "Arbab Ali", email: "drkanwalarbab@gmail.com", mobile: "923141390719", city: "Sakrand", registrationDate: "22/11/2025, 13:01:40", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
+            { accessCode: "WHITE-COAT-WORRIORS--HAMA-QM7Q2", studentName: "Hira Ashraf", fatherName: "M Ashraf", email: "cutieclouds92@gmail.com", mobile: "3058592833", city: "Kohat", registrationDate: "11/22/2025, 1:03:07 PM", totalQuestions: "50", correctAnswers: "47", incorrectAnswers: "3", unanswered: "0", finalScore: "47 / 50", submissionDate: "11/22/2025, 1:39:11 PM" },
+            { accessCode: "WHITE-COAT-WORRIORS--HSBK-VXO81", studentName: "Hasoora", fatherName: "Sher bahadur khan", email: "..", mobile: "3475054719", city: "Malakand", registrationDate: "22/11/2025, 13:10:41", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
             { accessCode: "WHITE-COAT-WORRIORS--DS-OYUZK", studentName: "Daniel", fatherName: "Shoukat", email: "daniyalpalijo28@gmail.com", mobile: "3242129665", city: "Thatta", registrationDate: "22/11/2025, 13:11:16", totalQuestions: "2", correctAnswers: "0", incorrectAnswers: "2", unanswered: "0", finalScore: "0 / 2", submissionDate: "22/11/2025, 13:15:41" },
+            { accessCode: "WHITE-COAT-WORRIORS--MR-5ZZC5", studentName: "Mk", fatherName: "Rai", email: "bbiologywithmk@gmail.com", mobile: "3007065250", city: "Jamshoro", registrationDate: "22/11/2025, 13:12:36", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
             { accessCode: "WHITE-COAT-WORRIORS--VKRK-4JB2K", studentName: "Vinod kumar", fatherName: "Ramesh kumar", email: "vmeghwar9@gmail.com", mobile: "3307180280", city: "Naukot mirpurkhas", registrationDate: "22/11/2025, 13:24:22", totalQuestions: "50", correctAnswers: "20", incorrectAnswers: "30", unanswered: "0", finalScore: "20 / 50", submissionDate: "22/11/2025, 13:49:28" },
             { accessCode: "WHITE-COAT-WORRIORS--SKSK-WHSF2", studentName: "Sadaf khan", fatherName: "Samandar khan", email: "samandar3616@gmail.com", mobile: "923334564410", city: "Layyah", registrationDate: "22/11/2025, 13:27:00", totalQuestions: "50", correctAnswers: "48", incorrectAnswers: "2", unanswered: "0", finalScore: "48 / 50", submissionDate: "22/11/2025, 13:32:50" },
             { accessCode: "WHITE-COAT-WORRIORS--ASU-OUSQ6", studentName: "Akhtarali", fatherName: "Sherin Ullah", email: "akhtaralik20021@gmail.com", mobile: "923119515247", city: "Upper Dir", registrationDate: "22/11/2025, 13:35:41", totalQuestions: "50", correctAnswers: "27", incorrectAnswers: "23", unanswered: "0", finalScore: "27 / 50", submissionDate: "22/11/2025, 13:51:47" }
@@ -787,9 +811,6 @@
                 
                 // Load high achievers
                 loadHighAchievers();
-                
-                // Update stats
-                updateStats();
                 
                 // Apply animations
                 applyAnimations();
@@ -966,31 +987,6 @@
                     
                     highAchieversList.appendChild(achieverItem);
                 });
-            }
-            
-            function updateStats() {
-                // Count students in different score ranges
-                let totalStudents = 0;
-                let students44Plus = 0;
-                let students25Plus = 0;
-                let students17Plus = 0;
-                
-                studentsData.forEach(student => {
-                    const scoreMatch = student.finalScore.match(/(\d+)\s*\/\s*(\d+)/);
-                    if (scoreMatch) {
-                        totalStudents++;
-                        const score = parseInt(scoreMatch[1]);
-                        
-                        if (score >= 44) students44Plus++;
-                        if (score >= 25) students25Plus++;
-                        if (score >= 17) students17Plus++;
-                    }
-                });
-                
-                document.getElementById('total-students').textContent = totalStudents;
-                document.getElementById('students-44-plus').textContent = students44Plus;
-                document.getElementById('students-25-plus').textContent = students25Plus;
-                document.getElementById('students-17-plus').textContent = students17Plus;
             }
             
             function applyAnimations() {
