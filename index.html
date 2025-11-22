@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedPlex Academy - Results Checker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a56db;
+            --secondary: #0ea5e9;
+            --accent: #10b981;
+            --light: #f8fafc;
+            --dark: #1e3a8a;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --background: #f0f9ff;
+            --card-bg: #ffffff;
+            --text-primary: #1e3a8a;
+            --text-secondary: #4b5563;
+            --border-radius: 5px;
+            --shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.2s ease;
+            --compact-spacing: 3px;
+        }
+
+        .dark-mode {
+            --primary: #3b82f6;
+            --secondary: #0ea5e9;
+            --accent: #10b981;
+            --light: #1e293b;
+            --dark: #f1f5f9;
+            --background: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            position: relative;
+            font-size: 8.1px;
+            line-height: 1.1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4.86px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 6.48px;
+            border-radius: var(--border-radius);
+            margin-bottom: 6.48px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+            animation: pulse 15s infinite linear;
+        }
+
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 4.32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo h1 {
+            font-size: 0.972rem;
+            font-weight: 800;
+            margin-bottom: 1.62px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo p {
+            font-weight: 500;
+            font-size: 0.486rem;
+            opacity: 0.9;
+        }
+
+        .header-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-content h1 {
+            font-size: 0.648rem;
+            margin-bottom: 4.32px;
+            color: #ffd700;
+        }
+
+        .header-content p {
+            font-size: 0.486rem;
+            line-height: 1.1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Navigation Styles */
+        .nav-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 6.48px;
+            position: relative;
+        }
+
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4.86px;
+        }
+
+        .nav-header h2 {
+            font-size: 0.729rem;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: none;
+            width: 25.92px;
+            height: 12.96px;
+            border-radius: 12.96px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 1.62px;
+            box-shadow: var(--shadow);
+        }
+
+        .theme-toggle span {
+            width: 9.72px;
+            height: 9.72px;
+            border-radius: 50%;
+            background: var(--primary);
+            position: absolute;
+            transition: var(--transition);
+            left: 1.62px;
+        }
+
+        .theme-toggle.dark span {
+            left: calc(100% - 11.34px);
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 2.43px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 2.43px;
+            padding: 4.05px 4.86px;
+            background: var(--card-bg);
+            border: none;
+            border-radius: var(--border-radius);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.486rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 1.5px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Panel Styles */
+        .panel {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 4.86px;
+            box-shadow: var(--shadow);
+            margin-bottom: 6.48px;
+            transition: var(--transition);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4.86px;
+            padding-bottom: 4.05px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .panel-title {
+            font-size: 0.648rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 2.43px;
+        }
+
+        .panel-actions {
+            display: flex;
+            gap: 2.43px;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2.43px;
+            padding: 2.43px 4.86px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 0.486rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 4.86px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            margin-bottom: 4.86px;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            gap: 4.86px;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .grid-3 {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 9.72px 0;
+            margin-top: auto;
+            font-size: 0.486rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 6.48px;
+            margin-top: 6.48px;
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6.48px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stats Panel */
+        .stats-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(64.8px, 1fr));
+            gap: 4.05px;
+            margin-bottom: 4.86px;
+        }
+
+        .stat-item {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 4.05px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-value {
+            font-size: 0.729rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.405rem;
+            color: var(--text-secondary);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Result Checker Styles */
+        .search-section {
+            margin-bottom: 9.72px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 4.86px;
+            margin-bottom: 6.48px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 4.05px 6.48px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+            font-size: 0.567rem;
+            background: var(--card-bg);
+            color: var(--text-primary);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1.62px rgba(26, 86, 219, 0.2);
+        }
+
+        /* Certificate Styles */
+        .certificate {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border: 2.43px solid #1a56db;
+            border-radius: 9.72px;
+            padding: 12.15px;
+            margin-bottom: 9.72px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 3.24px 12.15px rgba(0, 0, 0, 0.1);
+        }
+
+        .certificate-header {
+            margin-bottom: 9.72px;
+        }
+
+        .certificate-title {
+            font-size: 0.972rem;
+            font-weight: 800;
+            color: #1a56db;
+            margin-bottom: 4.86px;
+        }
+
+        .certificate-subtitle {
+            font-size: 0.648rem;
+            color: var(--text-secondary);
+        }
+
+        .certificate-body {
+            margin-bottom: 12.15px;
+        }
+
+        .student-name {
+            font-size: 0.81rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4.86px;
+        }
+
+        .student-details {
+            font-size: 0.567rem;
+            color: var(--text-secondary);
+            margin-bottom: 6.48px;
+            line-height: 1.4;
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 9.72px 0;
+            font-size: 0.486rem;
+        }
+
+        .result-table th, .result-table td {
+            border: 0.81px solid rgba(0, 0, 0, 0.1);
+            padding: 4.05px 6.48px;
+            text-align: center;
+        }
+
+        .result-table th {
+            background: rgba(26, 86, 219, 0.1);
+            font-weight: 600;
+        }
+
+        .result-table tr:nth-child(even) {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .final-score {
+            font-size: 0.729rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 9.72px 0;
+        }
+
+        .eligibility-info {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 3.24px solid var(--success);
+            padding: 6.48px;
+            margin: 9.72px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            text-align: left;
+        }
+
+        .eligibility-title {
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 3.24px;
+            font-size: 0.567rem;
+        }
+
+        .eligibility-content {
+            font-size: 0.486rem;
+            color: var(--text-secondary);
+        }
+
+        .high-achievers-list {
+            max-height: 324px;
+            overflow-y: auto;
+            margin-top: 9.72px;
+        }
+
+        .high-achiever-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 4.05px 6.48px;
+            border-bottom: 0.81px solid rgba(0, 0, 0, 0.1);
+            font-size: 0.486rem;
+        }
+
+        .high-achiever-item:last-child {
+            border-bottom: none;
+        }
+
+        .achiever-name {
+            font-weight: 600;
+        }
+
+        .achiever-score {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .winner-badge {
+            background: #ffd700;
+            color: #1a56db;
+            padding: 1.62px 4.05px;
+            border-radius: 3.24px;
+            font-size: 0.405rem;
+            font-weight: 700;
+            margin-left: 4.05px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 4.05px;
+            }
+            
+            header {
+                padding: 4.86px;
+            }
+            
+            .logo h1 {
+                font-size: 0.81rem;
+            }
+            
+            .panel {
+                padding: 4.86px;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 2.43px;
+            }
+            
+            .panel-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 3.24px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 1.62px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>MedPlex Academy</h1>
+                <p>Results Checker Portal</p>
+            </div>
+            
+            <div class="header-content">
+                <h1>Check Your Test Results & Eligibility</h1>
+                <p>Find your score and registration options for the upcoming session</p>
+            </div>
+        </header>
+
+        <div class="nav-container">
+            <div class="nav-header">
+                <h2>Navigation</h2>
+                <button class="theme-toggle" id="theme-toggle">
+                    <span></span>
+                </button>
+            </div>
+            
+            <div class="main-nav" id="main-nav">
+                <button class="nav-btn active" data-tab="results">
+                    <i class="fas fa-search"></i>
+                    <span>Search Results</span>
+                </button>
+                <button class="nav-btn" data-tab="high-achievers">
+                    <i class="fas fa-trophy"></i>
+                    <span>High Achievers</span>
+                </button>
+                <button class="nav-btn" data-tab="registration">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Registration Info</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Panel -->
+        <div class="stats-panel">
+            <div class="stat-item">
+                <div class="stat-value" id="total-students">0</div>
+                <div class="stat-label">Total Students</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="students-44-plus">0</div>
+                <div class="stat-label">44+ Marks</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="students-25-plus">0</div>
+                <div class="stat-label">25+ Marks</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="students-17-plus">0</div>
+                <div class="stat-label">17+ Marks</div>
+            </div>
+        </div>
+
+        <!-- Results Checker Tab -->
+        <div class="tab-content active" id="results-tab">
+            <!-- Search Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-search"></i> Search Your Result</h3>
+                </div>
+                
+                <div class="search-section">
+                    <p style="font-size: 0.567rem; margin-bottom: 6.48px; color: var(--text-secondary);">
+                        Enter your phone number to check your result and eligibility for MedPlex Academy sessions.
+                    </p>
+                    
+                    <div class="search-box">
+                        <input type="text" class="search-input" id="phone-search" placeholder="Enter your phone number (e.g., 3141993528)">
+                        <button class="btn btn-primary" id="search-btn">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Certificate Display -->
+            <div class="panel fade-in" id="certificate-panel" style="display: none;">
+                <div class="certificate">
+                    <div class="certificate-header">
+                        <div class="certificate-title">MedPlex Academy</div>
+                        <div class="certificate-subtitle">Certificate of Achievement</div>
+                    </div>
+                    
+                    <div class="certificate-body">
+                        <div class="student-name" id="certificate-name">Student Name</div>
+                        <div class="student-details" id="certificate-details">
+                            Father: <span id="certificate-father"></span><br>
+                            Email: <span id="certificate-email"></span><br>
+                            City: <span id="certificate-city"></span><br>
+                            Phone: <span id="certificate-phone"></span>
+                        </div>
+                        
+                        <table class="result-table">
+                            <thead>
+                                <tr>
+                                    <th>Total Questions</th>
+                                    <th>Correct Answers</th>
+                                    <th>Incorrect Answers</th>
+                                    <th>Unanswered</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="certificate-total">50</td>
+                                    <td id="certificate-correct">44</td>
+                                    <td id="certificate-incorrect">6</td>
+                                    <td id="certificate-unanswered">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="final-score" id="certificate-score">Final Score: 44 / 50</div>
+                        
+                        <div class="eligibility-info">
+                            <div class="eligibility-title" id="eligibility-title">Eligibility Status</div>
+                            <div class="eligibility-content" id="eligibility-content">
+                                Based on your score, you are eligible for free registration in the MedPlex Academy session starting December 5, 2025.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- High Achievers Tab -->
+        <div class="tab-content" id="high-achievers-tab">
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-trophy"></i> High Achievers (36+ Marks)</h3>
+                </div>
+                
+                <div class="high-achievers-list" id="high-achievers-list">
+                    <!-- High achievers will be populated here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Registration Information Tab -->
+        <div class="tab-content" id="registration-tab">
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-info-circle"></i> Registration Information</h3>
+                </div>
+                
+                <div style="font-size: 0.567rem; color: var(--text-secondary); line-height: 1.4;">
+                    <p style="margin-bottom: 6.48px;">
+                        <strong>Session Details:</strong> The session will start on <strong>December 5, 2025</strong> and continue for the next three months.
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 4.86px; margin-bottom: 9.72px;">
+                        <div style="background: rgba(16, 185, 129, 0.1); padding: 4.86px; border-radius: var(--border-radius);">
+                            <strong>44+ Marks:</strong> Free registration for full three-month session
+                        </div>
+                        <div style="background: rgba(59, 130, 246, 0.1); padding: 4.86px; border-radius: var(--border-radius);">
+                            <strong>25+ Marks:</strong> Registration with payment of 700 RS for full three-month session
+                        </div>
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 4.86px; border-radius: var(--border-radius);">
+                            <strong>17+ Marks:</strong> Registration with payment of 1200 RS for full three-month session
+                        </div>
+                    </div>
+                    
+                    <div class="eligibility-info">
+                        <div class="eligibility-title">Special Reward</div>
+                        <div class="eligibility-content">
+                            <i class="fas fa-gift" style="color: var(--accent);"></i> 
+                            <strong>Anyone with full marks (50) who started first and submitted earlier will be given a reward of 200 RS.</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 MedPlex Academy. All rights reserved.</p>
+                <p>Session starting December 5, 2025 - Three month program</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Student data from the PDF
+        const studentsData = [
+            { accessCode: "WHITE-COAT-WORRIORS--SKSK-X7JIF", studentName: "Shahzib Khan", fatherName: "Shahniaz Khan", email: "lewan dardariz bannu . kpk", mobile: "3141993528", city: "Bannu", registrationDate: "22/11/2025, 07:00:01", totalQuestions: "50", correctAnswers: "44", incorrectAnswers: "6", unanswered: "0", finalScore: "44 / 50", submissionDate: "22/11/2025, 07:20:20" },
+            { accessCode: "WHITE-COAT-WORRIORS--SAAK-EAJ2P", studentName: "Sikander Ali", fatherName: "Abdul Kareem", email: "sikanderalimarfani@gmail.com", mobile: "3102336373", city: "Nawabshah", registrationDate: "22/11/2025, 07:11:44", totalQuestions: "50", correctAnswers: "50", incorrectAnswers: "0", unanswered: "0", finalScore: "50 / 50", submissionDate: "22/11/2025, 07:49:22" },
+            { accessCode: "WHITE-COAT-WORRIORS--AGR-9U21F", studentName: "Ayesha", fatherName: "Ghulam Rasool", email: ".", mobile: "3457258245", city: "Rawalpindi", registrationDate: "22/11/2025, 07:43:27", totalQuestions: "28", correctAnswers: "10", incorrectAnswers: "18", unanswered: "0", finalScore: "10 / 28", submissionDate: "22/11/2025, 08:04:22" },
+            { accessCode: "WHITE-COAT-WORRIORS--AGR-RCOAQ", studentName: "Ayesha", fatherName: "Ghulam Rasool", email: ".", mobile: "3457258245", city: "Rawalpindi", registrationDate: "22/11/2025, 08:07:25", totalQuestions: "50", correctAnswers: "50", incorrectAnswers: "0", unanswered: "0", finalScore: "50 / 50", submissionDate: "22/11/2025, 08:18:07" },
+            { accessCode: "WHITE-COAT-WORRIORS--KLMA-UUOLY", studentName: "Kunzal Lakhair", fatherName: "Muhammad Ali", email: "kunzallakhair@gmail.com", mobile: "3133244519", city: "K n shah district dadu", registrationDate: "22/11/2025, 08:09:50", totalQuestions: "50", correctAnswers: "50", incorrectAnswers: "0", unanswered: "0", finalScore: "50 / 50", submissionDate: "22/11/2025, 08:14:03" },
+            { accessCode: "WHITE-COAT-WORRIORS--AA-R0S24", studentName: "Areeba", fatherName: "Allahdino", email: "Azharbajeer511@gmail.com", mobile: "3361932199", city: "City : Diplo district tharparker", registrationDate: "22/11/2025, 08:13:17", totalQuestions: "50", correctAnswers: "43", incorrectAnswers: "7", unanswered: "0", finalScore: "43 / 50", submissionDate: "22/11/2025, 08:47:43" },
+            { accessCode: "WHITE-COAT-WORRIORS--FAD-WYLH0", studentName: "Fatima", fatherName: "Allah Ditto", email: "muhammadahmedkolachi333@gmail.com", mobile: "0320-2001676", city: "KARACHI/dadu", registrationDate: "22/11/2025, 08:40:16", totalQuestions: "50", correctAnswers: "17", incorrectAnswers: "33", unanswered: "0", finalScore: "17 / 50", submissionDate: "22/11/2025, 09:03:28" },
+            { accessCode: "WHITE-COAT-WORRIORS--AJMH-KLKLT", studentName: "Alveera Jannat", fatherName: "Manzoor Hussain", email: "hunzalrajpoot50@gmail.com", mobile: "923193611148", city: "Multan", registrationDate: "22/11/2025, 11:19:12", totalQuestions: "50", correctAnswers: "50", incorrectAnswers: "0", unanswered: "0", finalScore: "50 / 50", submissionDate: "22/11/2025, 11:28:02" },
+            { accessCode: "WHITE-COAT-WORRIORS--ROOHAN-U6Z4H", studentName: "Roohan", fatherName: "Amjad", email: "roohan00@gmail.com", mobile: "3113032735", city: "Thatta", registrationDate: "22/11/2025, 11:02:01", totalQuestions: "2", correctAnswers: "1", incorrectAnswers: "1", unanswered: "0", finalScore: "1 / 2", submissionDate: "22/11/2025, 11:12:25" },
+            { accessCode: "WHITE-COAT-WORRIORS--HAMA-QM7Q2", studentName: "Hira Ashraf", fatherName: "M Ashraf", email: "cutieclouds92@gmail.com", mobile: "3058592833", city: "Kohat", registrationDate: "11/22/2025, 1:03:07 PM", totalQuestions: "50", correctAnswers: "47", incorrectAnswers: "3", unanswered: "0", finalScore: "47 / 50", submissionDate: "11/22/2025, 1:39:11 PM" },
+            { accessCode: "WHITE-COAT-WORRIORS--SKSK-PT9NO", studentName: "Sadaf khan", fatherName: "Samandar khan", email: "samandar3616@gmail.com", mobile: "923334564410", city: "Layyah", registrationDate: "22/11/2025, 12:56:17", totalQuestions: "50", correctAnswers: "29", incorrectAnswers: "21", unanswered: "0", finalScore: "29 / 50", submissionDate: "22/11/2025, 13:24:46" },
+            { accessCode: "WHITE-COAT-WORRIORS--DS-OYUZK", studentName: "Daniel", fatherName: "Shoukat", email: "daniyalpalijo28@gmail.com", mobile: "3242129665", city: "Thatta", registrationDate: "22/11/2025, 13:11:16", totalQuestions: "2", correctAnswers: "0", incorrectAnswers: "2", unanswered: "0", finalScore: "0 / 2", submissionDate: "22/11/2025, 13:15:41" },
+            { accessCode: "WHITE-COAT-WORRIORS--VKRK-4JB2K", studentName: "Vinod kumar", fatherName: "Ramesh kumar", email: "vmeghwar9@gmail.com", mobile: "3307180280", city: "Naukot mirpurkhas", registrationDate: "22/11/2025, 13:24:22", totalQuestions: "50", correctAnswers: "20", incorrectAnswers: "30", unanswered: "0", finalScore: "20 / 50", submissionDate: "22/11/2025, 13:49:28" },
+            { accessCode: "WHITE-COAT-WORRIORS--SKSK-WHSF2", studentName: "Sadaf khan", fatherName: "Samandar khan", email: "samandar3616@gmail.com", mobile: "923334564410", city: "Layyah", registrationDate: "22/11/2025, 13:27:00", totalQuestions: "50", correctAnswers: "48", incorrectAnswers: "2", unanswered: "0", finalScore: "48 / 50", submissionDate: "22/11/2025, 13:32:50" },
+            { accessCode: "WHITE-COAT-WORRIORS--ASU-OUSQ6", studentName: "Akhtarali", fatherName: "Sherin Ullah", email: "akhtaralik20021@gmail.com", mobile: "923119515247", city: "Upper Dir", registrationDate: "22/11/2025, 13:35:41", totalQuestions: "50", correctAnswers: "27", incorrectAnswers: "23", unanswered: "0", finalScore: "27 / 50", submissionDate: "22/11/2025, 13:51:47" }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the application
+            initApp();
+            
+            function initApp() {
+                // Set up tab navigation
+                setupTabs();
+                
+                // Set up event listeners
+                setupEventListeners();
+                
+                // Load high achievers
+                loadHighAchievers();
+                
+                // Update stats
+                updateStats();
+                
+                // Apply animations
+                applyAnimations();
+            }
+            
+            function setupTabs() {
+                const tabButtons = document.querySelectorAll('.nav-btn[data-tab]');
+                const tabContents = document.querySelectorAll('.tab-content');
+                
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const tabId = button.getAttribute('data-tab');
+                        
+                        // Update active tab button
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        
+                        // Show active content
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        document.getElementById(`${tabId}-tab`).classList.add('active');
+                    });
+                });
+            }
+            
+            function setupEventListeners() {
+                // Theme toggle
+                document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+                
+                // Search button
+                document.getElementById('search-btn').addEventListener('click', searchStudent);
+                
+                // Enter key in search field
+                document.getElementById('phone-search').addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        searchStudent();
+                    }
+                });
+            }
+            
+            function toggleTheme() {
+                const themeToggle = document.getElementById('theme-toggle');
+                document.body.classList.toggle('dark-mode');
+                themeToggle.classList.toggle('dark');
+                saveToLocalStorage('darkMode', document.body.classList.contains('dark-mode'));
+            }
+            
+            function searchStudent() {
+                const phoneInput = document.getElementById('phone-search');
+                const phoneNumber = phoneInput.value.trim();
+                
+                if (!phoneNumber) {
+                    alert('Please enter a phone number');
+                    return;
+                }
+                
+                // Find student by phone number
+                const student = studentsData.find(s => 
+                    s.mobile === phoneNumber || 
+                    s.mobile.replace(/-/g, '') === phoneNumber.replace(/-/g, '')
+                );
+                
+                if (student) {
+                    displayCertificate(student);
+                } else {
+                    alert('No student found with this phone number. Please check the number and try again.');
+                }
+            }
+            
+            function displayCertificate(student) {
+                // Extract score from finalScore string (e.g., "44 / 50")
+                const scoreMatch = student.finalScore.match(/(\d+)\s*\/\s*(\d+)/);
+                const score = scoreMatch ? parseInt(scoreMatch[1]) : 0;
+                const total = scoreMatch ? parseInt(scoreMatch[2]) : 0;
+                
+                // Update certificate fields
+                document.getElementById('certificate-name').textContent = student.studentName;
+                document.getElementById('certificate-father').textContent = student.fatherName;
+                document.getElementById('certificate-email').textContent = student.email;
+                document.getElementById('certificate-city').textContent = student.city;
+                document.getElementById('certificate-phone').textContent = student.mobile;
+                
+                document.getElementById('certificate-total').textContent = student.totalQuestions;
+                document.getElementById('certificate-correct').textContent = student.correctAnswers;
+                document.getElementById('certificate-incorrect').textContent = student.incorrectAnswers;
+                document.getElementById('certificate-unanswered').textContent = student.unanswered;
+                document.getElementById('certificate-score').textContent = `Final Score: ${student.finalScore}`;
+                
+                // Determine eligibility
+                let eligibilityTitle = '';
+                let eligibilityContent = '';
+                
+                if (score >= 44) {
+                    eligibilityTitle = 'Free Registration Eligible';
+                    eligibilityContent = 'Congratulations! Based on your score, you are eligible for free registration in the MedPlex Academy session starting December 5, 2025.';
+                } else if (score >= 25) {
+                    eligibilityTitle = 'Registration with 700 RS Payment';
+                    eligibilityContent = 'Based on your score, you can register for the MedPlex Academy session starting December 5, 2025 with a payment of 700 RS for the full three-month session.';
+                } else if (score >= 17) {
+                    eligibilityTitle = 'Registration with 1200 RS Payment';
+                    eligibilityContent = 'Based on your score, you can register for the MedPlex Academy session starting December 5, 2025 with a payment of 1200 RS for the full three-month session.';
+                } else {
+                    eligibilityTitle = 'Not Eligible for Registration';
+                    eligibilityContent = 'Based on your score, you are not currently eligible for registration in the MedPlex Academy session. Please try again in future sessions.';
+                }
+                
+                document.getElementById('eligibility-title').textContent = eligibilityTitle;
+                document.getElementById('eligibility-content').textContent = eligibilityContent;
+                
+                // Show certificate panel
+                document.getElementById('certificate-panel').style.display = 'block';
+            }
+            
+            function loadHighAchievers() {
+                const highAchieversList = document.getElementById('high-achievers-list');
+                highAchieversList.innerHTML = '';
+                
+                // Filter students with 36+ marks
+                const highAchievers = studentsData.filter(student => {
+                    const scoreMatch = student.finalScore.match(/(\d+)\s*\/\s*(\d+)/);
+                    return scoreMatch && parseInt(scoreMatch[1]) >= 36;
+                });
+                
+                // Sort by score (descending) and then by submission time (earliest first)
+                highAchievers.sort((a, b) => {
+                    const scoreA = parseInt(a.finalScore.match(/(\d+)\s*\/\s*(\d+)/)[1]);
+                    const scoreB = parseInt(b.finalScore.match(/(\d+)\s*\/\s*(\d+)/)[1]);
+                    
+                    if (scoreB !== scoreA) {
+                        return scoreB - scoreA;
+                    }
+                    
+                    // If scores are equal, sort by submission date (earliest first)
+                    return new Date(a.submissionDate) - new Date(b.submissionDate);
+                });
+                
+                if (highAchievers.length === 0) {
+                    highAchieversList.innerHTML = '<p style="text-align: center; font-size: 0.486rem; color: var(--text-secondary); padding: 9.72px;">No high achievers found.</p>';
+                    return;
+                }
+                
+                // Find the winner (first person with full marks who submitted earliest)
+                const perfectScores = highAchievers.filter(s => {
+                    const scoreMatch = s.finalScore.match(/(\d+)\s*\/\s*(\d+)/);
+                    return scoreMatch && parseInt(scoreMatch[1]) === 50;
+                });
+                
+                let winner = null;
+                if (perfectScores.length > 0) {
+                    // Sort perfect scorers by submission date (earliest first)
+                    perfectScores.sort((a, b) => new Date(a.submissionDate) - new Date(b.submissionDate));
+                    winner = perfectScores[0];
+                }
+                
+                highAchievers.forEach(student => {
+                    const scoreMatch = student.finalScore.match(/(\d+)\s*\/\s*(\d+)/);
+                    const score = scoreMatch ? parseInt(scoreMatch[1]) : 0;
+                    
+                    const achieverItem = document.createElement('div');
+                    achieverItem.className = 'high-achiever-item';
+                    
+                    let winnerBadge = '';
+                    if (winner && student.accessCode === winner.accessCode) {
+                        winnerBadge = '<span class="winner-badge">200 RS Winner</span>';
+                    }
+                    
+                    achieverItem.innerHTML = `
+                        <div>
+                            <span class="achiever-name">${student.studentName}</span>
+                            ${winnerBadge}
+                            <div style="font-size: 0.405rem; color: var(--text-secondary);">${student.mobile}</div>
+                        </div>
+                        <div class="achiever-score">${student.finalScore}</div>
+                    `;
+                    
+                    highAchieversList.appendChild(achieverItem);
+                });
+            }
+            
+            function updateStats() {
+                // Count students in different score ranges
+                let totalStudents = 0;
+                let students44Plus = 0;
+                let students25Plus = 0;
+                let students17Plus = 0;
+                
+                studentsData.forEach(student => {
+                    const scoreMatch = student.finalScore.match(/(\d+)\s*\/\s*(\d+)/);
+                    if (scoreMatch) {
+                        totalStudents++;
+                        const score = parseInt(scoreMatch[1]);
+                        
+                        if (score >= 44) students44Plus++;
+                        if (score >= 25) students25Plus++;
+                        if (score >= 17) students17Plus++;
+                    }
+                });
+                
+                document.getElementById('total-students').textContent = totalStudents;
+                document.getElementById('students-44-plus').textContent = students44Plus;
+                document.getElementById('students-25-plus').textContent = students25Plus;
+                document.getElementById('students-17-plus').textContent = students17Plus;
+            }
+            
+            function applyAnimations() {
+                const elements = document.querySelectorAll('.panel, .card, .nav-btn');
+                
+                elements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('fade-in');
+                    }, index * 50);
+                });
+            }
+            
+            function saveToLocalStorage(key, value) {
+                try {
+                    localStorage.setItem(key, JSON.stringify(value));
+                } catch (e) {
+                    console.error('Error saving to localStorage:', e);
+                }
+            }
+            
+            function getFromLocalStorage(key) {
+                try {
+                    const value = localStorage.getItem(key);
+                    return value ? JSON.parse(value) : null;
+                } catch (e) {
+                    console.error('Error reading from localStorage:', e);
+                    return null;
+                }
+            }
+            
+            // Load dark mode setting
+            const darkMode = getFromLocalStorage('darkMode');
+            if (darkMode) {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-toggle').classList.add('dark');
+            }
+        });
+    </script>
+</body>
+</html>
