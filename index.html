@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
 <html lang="en">
 <head>
+<meta content="c97c784db67b112614cb27063694d5d4" name="skytraffix-site-verification" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedPlex Academy - Results Checker</title>
+    <title>Chemistry MCQs - Dehydration & Ozonolysis</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -128,6 +129,45 @@
             line-height: 1.1;
             max-width: 800px;
             margin: 0 auto;
+        }
+
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 15.12px;
+            height: 15.12px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            position: absolute;
+            top: 6.48px;
+            right: 6.48px;
+            z-index: 10;
+        }
+
+        .menu-toggle span {
+            width: 15.12px;
+            height: 1.62px;
+            background: white;
+            border-radius: 1.62px;
+            transition: var(--transition);
+            position: relative;
+            transform-origin: center;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(3.24px, 3.24px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(4.32px, -4.32px);
         }
 
         /* Navigation Styles */
@@ -268,6 +308,16 @@
             transform: translateY(-1px);
         }
 
+        .btn-secondary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #0da271;
+            transform: translateY(-1px);
+        }
+
         /* Card Styles */
         .card {
             background: var(--card-bg);
@@ -276,6 +326,26 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             margin-bottom: 4.86px;
+        }
+
+        .card:hover {
+            transform: translateY(-1.5px);
+            box-shadow: 0 2.43px 6.48px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 2.43px;
+            margin-bottom: 4.05px;
+            padding-bottom: 4.05px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 0.567rem;
+            font-weight: 700;
+            color: var(--primary);
         }
 
         /* Grid Layout */
@@ -317,6 +387,73 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .slide-in {
+            animation: slideIn 0.3s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-6.48px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* MCQ Card Styles */
+        .mcq-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .mcq-info {
+            flex-grow: 1;
+            margin-bottom: 4.86px;
+        }
+
+        .mcq-id {
+            font-weight: 700;
+            font-size: 0.567rem;
+            color: var(--primary);
+            margin-bottom: 1.62px;
+        }
+
+        .mcq-subject {
+            font-size: 0.486rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.43px;
+        }
+
+        .mcq-chapter {
+            font-size: 0.486rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.43px;
+            font-weight: 600;
+        }
+
+        .mcq-details {
+            font-size: 0.405rem;
+            color: var(--text-secondary);
+            margin-bottom: 4.05px;
+        }
+
+        .start-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 4.05px 6.48px;
+            font-weight: 600;
+            font-size: 0.486rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        .start-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-1px);
+        }
+
         /* Stats Panel */
         .stats-panel {
             display: grid;
@@ -354,170 +491,352 @@
             display: block;
         }
 
-        /* Result Checker Styles */
-        .search-section {
-            margin-bottom: 9.72px;
-        }
-
-        .search-box {
-            display: flex;
-            gap: 4.86px;
-            margin-bottom: 6.48px;
-        }
-
-        .search-input {
-            flex: 1;
-            padding: 4.05px 6.48px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: var(--border-radius);
-            font-size: 0.567rem;
-            background: var(--card-bg);
-            color: var(--text-primary);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 1.62px rgba(26, 86, 219, 0.2);
-        }
-
-        /* Certificate Styles */
-        .certificate {
-            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-            border: 2.43px solid #1a56db;
-            border-radius: 9.72px;
-            padding: 12.15px;
-            margin-bottom: 9.72px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 3.24px 12.15px rgba(0, 0, 0, 0.1);
-        }
-
-        .certificate-header {
-            margin-bottom: 9.72px;
-        }
-
-        .certificate-title {
-            font-size: 0.972rem;
-            font-weight: 800;
-            color: #1a56db;
-            margin-bottom: 4.86px;
-        }
-
-        .certificate-subtitle {
-            font-size: 0.648rem;
-            color: var(--text-secondary);
-        }
-
-        .certificate-body {
+        /* Explanation Section Styles */
+        .explanation-section {
             margin-bottom: 12.15px;
+            padding: 9.72px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
         }
 
-        .student-name {
-            font-size: 0.81rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 4.86px;
-        }
-
-        .student-details {
-            font-size: 0.567rem;
-            color: var(--text-secondary);
+        .explanation-header {
+            display: flex;
+            align-items: center;
+            gap: 6.48px;
             margin-bottom: 6.48px;
-            line-height: 1.4;
+            padding-bottom: 4.86px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
-        .result-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 9.72px 0;
-            font-size: 0.486rem;
+        .explanation-icon {
+            width: 24.3px;
+            height: 24.3px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.81rem;
         }
 
-        .result-table th, .result-table td {
-            border: 0.81px solid rgba(0, 0, 0, 0.1);
-            padding: 4.05px 6.48px;
-            text-align: center;
-        }
-
-        .result-table th {
-            background: rgba(26, 86, 219, 0.1);
-            font-weight: 600;
-        }
-
-        .result-table tr:nth-child(even) {
-            background: rgba(0, 0, 0, 0.02);
-        }
-
-        .final-score {
+        .explanation-title {
             font-size: 0.729rem;
             font-weight: 700;
             color: var(--primary);
-            margin: 9.72px 0;
         }
 
-        .eligibility-info {
-            background: rgba(16, 185, 129, 0.1);
-            border-left: 3.24px solid var(--success);
+        .explanation-content {
+            font-size: 0.567rem;
+            line-height: 1.4;
+            color: var(--text-primary);
+        }
+
+        .explanation-content h4 {
+            font-size: 0.648rem;
+            margin: 6.48px 0 3.24px;
+            color: var(--primary);
+        }
+
+        .explanation-content p {
+            margin-bottom: 4.86px;
+        }
+
+        .explanation-content ul, .explanation-content ol {
+            margin-left: 16.2px;
+            margin-bottom: 6.48px;
+        }
+
+        .explanation-content li {
+            margin-bottom: 2.43px;
+        }
+
+        .mechanism-diagram {
+            text-align: center;
+            margin: 9.72px 0;
             padding: 6.48px;
-            margin: 9.72px 0;
-            border-radius: 0 var(--border-radius) var(--border-radius) 0;
-            text-align: left;
+            background: var(--light);
+            border-radius: var(--border-radius);
         }
 
-        .eligibility-title {
+        .mechanism-diagram img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+        }
+
+        .key-concept {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 3.24px solid var(--primary);
+            padding: 6.48px;
+            margin: 6.48px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .key-concept-title {
             font-weight: 700;
-            color: var(--success);
+            color: var(--primary);
             margin-bottom: 3.24px;
             font-size: 0.567rem;
         }
 
-        .eligibility-content {
+        /* MCQ Detail Styles */
+        .mcq-detail-container {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 9.72px;
+            margin-bottom: 9.72px;
+            box-shadow: var(--shadow);
+        }
+
+        .mcq-question {
+            font-size: 0.648rem;
+            font-weight: 600;
+            margin-bottom: 6.48px;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .mcq-options {
+            margin-bottom: 9.72px;
+        }
+
+        .mcq-option {
+            padding: 4.05px 6.48px;
+            margin-bottom: 3.24px;
+            border-radius: var(--border-radius);
+            background: var(--light);
+            font-size: 0.567rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 2.43px solid transparent;
+        }
+
+        .mcq-option:hover {
+            background: rgba(26, 86, 219, 0.05);
+        }
+
+        .mcq-option.selected {
+            border-left-color: var(--primary);
+            background: rgba(26, 86, 219, 0.1);
+        }
+
+        .mcq-option.correct {
+            border-left-color: var(--success);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .mcq-option.incorrect {
+            border-left-color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+        }
+
+        .mcq-explanation {
+            margin-top: 9.72px;
+            padding: 6.48px;
+            border-radius: var(--border-radius);
+            background: var(--light);
+            font-size: 0.486rem;
+            line-height: 1.4;
+            display: none;
+        }
+
+        .mcq-explanation.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .explanation-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4.05px;
+            font-size: 0.567rem;
+        }
+
+        .explanation-content {
+            color: var(--text-secondary);
+        }
+
+        .mcq-actions {
+            display: flex;
+            gap: 4.86px;
+            margin-top: 6.48px;
+        }
+
+        /* Progress Tracking */
+        .progress-section {
+            margin-top: 9.72px;
+            padding: 6.48px;
+            background: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4.86px;
+        }
+
+        .progress-title {
+            font-size: 0.648rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .progress-stats {
             font-size: 0.486rem;
             color: var(--text-secondary);
         }
 
-        .high-achievers-list {
-            max-height: 324px;
-            overflow-y: auto;
-            margin-top: 9.72px;
-        }
-
-        .high-achiever-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 4.05px 6.48px;
-            border-bottom: 0.81px solid rgba(0, 0, 0, 0.1);
-            font-size: 0.486rem;
-        }
-
-        .high-achiever-item:last-child {
-            border-bottom: none;
-        }
-
-        .achiever-name {
-            font-weight: 600;
-        }
-
-        .achiever-score {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .winner-badge {
-            background: #ffd700;
-            color: #1a56db;
-            padding: 1.62px 4.05px;
+        .progress-bar {
+            height: 6.48px;
+            background: #e5e7eb;
             border-radius: 3.24px;
-            font-size: 0.405rem;
-            font-weight: 700;
-            margin-left: 4.05px;
+            overflow: hidden;
+            margin-bottom: 4.86px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--success);
+            border-radius: 3.24px;
+            transition: width 0.5s ease;
+        }
+
+        /* Welcome Animation - Enhanced */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #1e3a8a, #1a56db);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 1;
+            transition: opacity 0.8s ease;
+        }
+
+        .welcome-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .welcome-content {
+            text-align: center;
+            color: white;
+            padding: 12.15px;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 9.72px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4.86px 16.2px rgba(0, 0, 0, 0.2);
+        }
+
+        .welcome-content h2 {
+            font-size: 1.458rem;
+            margin-bottom: 9.72px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 2.5s infinite;
+        }
+
+        .welcome-content p {
+            font-size: 0.648rem;
+            margin-bottom: 12.15px;
+            line-height: 1.4;
+            opacity: 0.9;
+        }
+
+        .welcome-logo {
+            font-size: 2.025rem;
+            margin-bottom: 12.15px;
+            color: #ffd700;
+            text-shadow: 0 0 12.15px rgba(255, 215, 0, 0.5);
+            animation: pulseWelcome 1.5s infinite;
+        }
+
+        @keyframes pulseWelcome {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* WhatsApp Small Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 12.15px;
+            right: 12.15px;
+            background: #25D366;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.053rem;
+            box-shadow: 0 2.43px 6.48px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3.24px 8.1px rgba(0, 0, 0, 0.4);
         }
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .grid-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         @media (max-width: 900px) {
             .grid-2, .grid-3 {
                 grid-template-columns: 1fr;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .main-nav {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: var(--card-bg);
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                padding: 4.86px;
+                z-index: 100;
+                width: 129.6px;
+                display: none;
+            }
+            
+            .main-nav.active {
+                display: flex;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: flex-start;
             }
         }
 
@@ -546,6 +865,23 @@
             .panel-actions {
                 flex-direction: column;
             }
+            
+            .welcome-content {
+                padding: 9.72px;
+                margin: 6.48px;
+            }
+            
+            .welcome-content h2 {
+                font-size: 1.053rem;
+            }
+            
+            .welcome-content p {
+                font-size: 0.567rem;
+            }
+            
+            .welcome-logo {
+                font-size: 1.62rem;
+            }
         }
 
         /* Custom Scrollbar */
@@ -568,16 +904,41 @@
     </style>
 </head>
 <body>
+    <!-- Welcome Animation -->
+    <div class="welcome-overlay" id="welcome-overlay">
+        <div class="welcome-content scale-in">
+            <div class="welcome-logo">
+                <i class="fas fa-flask"></i>
+            </div>
+            <h2>Chemistry MCQs Portal</h2>
+            <p>Master Dehydration and Ozonolysis of Alkenes with comprehensive explanations and MCQs.</p>
+            <button class="btn btn-primary" id="start-btn" style="padding: 4.86px 9.72px; font-size: 0.648rem;">
+                Get Started <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- WhatsApp Small Button -->
+    <a href="https://whatsapp.com/channel/0029VbBeueg0QeajGumGWb0f" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <div class="container">
         <header>
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
             <div class="logo">
-                <h1>MedPlex Academy</h1>
-                <p>Results Checker Portal</p>
+                <h1>Chemistry MCQs Portal</h1>
+                <p>Dehydration & Ozonolysis of Alkenes</p>
             </div>
             
             <div class="header-content">
-                <h1>Check Your Test Results & Eligibility</h1>
-                <p>Find your score and registration options for the upcoming session</p>
+                <h1>Comprehensive Explanations & Practice MCQs</h1>
+                <p>Master key organic chemistry concepts with detailed explanations and interactive questions</p>
             </div>
         </header>
 
@@ -590,17 +951,17 @@
             </div>
             
             <div class="main-nav" id="main-nav">
-                <button class="nav-btn active" data-tab="results">
-                    <i class="fas fa-search"></i>
-                    <span>Search Results</span>
+                <button class="nav-btn active" data-tab="dehydration">
+                    <i class="fas fa-tint"></i>
+                    <span>Dehydration of Alkenes</span>
                 </button>
-                <button class="nav-btn" data-tab="high-achievers">
-                    <i class="fas fa-trophy"></i>
-                    <span>High Achievers</span>
+                <button class="nav-btn" data-tab="ozonolysis">
+                    <i class="fas fa-wind"></i>
+                    <span>Ozonolysis of Alkenes</span>
                 </button>
-                <button class="nav-btn" data-tab="registration">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Registration Info</span>
+                <button class="nav-btn" data-tab="progress">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Progress Tracking</span>
                 </button>
             </div>
         </div>
@@ -608,136 +969,277 @@
         <!-- Stats Panel -->
         <div class="stats-panel">
             <div class="stat-item">
-                <div class="stat-value" id="total-students">1325</div>
-                <div class="stat-label">Total Students</div>
+                <div class="stat-value" id="dehydration-mcqs">20</div>
+                <div class="stat-label">Dehydration MCQs</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value" id="students-44-plus">45</div>
-                <div class="stat-label">44+ Marks</div>
+                <div class="stat-value" id="ozonolysis-mcqs">20</div>
+                <div class="stat-label">Ozonolysis MCQs</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value" id="students-25-plus">289</div>
-                <div class="stat-label">25+ Marks</div>
+                <div class="stat-value" id="total-mcqs">40</div>
+                <div class="stat-label">Total MCQs</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value" id="students-17-plus">512</div>
-                <div class="stat-label">17+ Marks</div>
+                <div class="stat-value" id="completed-mcqs">0</div>
+                <div class="stat-label">Completed</div>
             </div>
         </div>
 
-        <!-- Results Checker Tab -->
-        <div class="tab-content active" id="results-tab">
-            <!-- Search Section -->
-            <div class="panel fade-in">
-                <div class="panel-header">
-                    <h3 class="panel-title"><i class="fas fa-search"></i> Search Your Result</h3>
+        <!-- Dehydration of Alkenes Tab -->
+        <div class="tab-content active" id="dehydration-tab">
+            <!-- Explanation Section -->
+            <div class="explanation-section fade-in">
+                <div class="explanation-header">
+                    <div class="explanation-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="explanation-title">Dehydration Reactions of Alkenes</div>
                 </div>
                 
-                <div class="search-section">
-                    <p style="font-size: 0.567rem; margin-bottom: 6.48px; color: var(--text-secondary);">
-                        Enter your phone number to check your result and eligibility for MedPlex Academy sessions.
-                    </p>
+                <div class="explanation-content">
+                    <h4>What is Dehydration?</h4>
+                    <p>Dehydration is an <strong>elimination reaction</strong> where an alcohol loses a water molecule (H and OH from adjacent carbons) to form an alkene. It is a primary method for <em>preparing</em> alkenes in the laboratory.</p>
                     
-                    <div class="search-box">
-                        <input type="text" class="search-input" id="phone-search" placeholder="Enter your phone number (e.g., 3141993528)">
-                        <button class="btn btn-primary" id="search-btn">
-                            <i class="fas fa-search"></i> Search
-                        </button>
+                    <div class="key-concept">
+                        <div class="key-concept-title">Key Concept: Elimination Reaction</div>
+                        <p>Elimination reactions involve the removal of atoms or groups from a molecule, resulting in the formation of a double bond. In dehydration, water (Hâ‚‚O) is eliminated from an alcohol to form an alkene.</p>
+                    </div>
+                    
+                    <h4>General Reaction:</h4>
+                    <p><code>Alcohol + Acid Catalyst + Heat â†' Alkene + Water</code></p>
+                    
+                    <h4>Mechanism (for secondary/tertiary alcohols - E1):</h4>
+                    <ol>
+                        <li><strong>Protonation:</strong> The alcohol's OH group is protonated by a strong acid (e.g., Hâ‚‚SOâ‚„), turning it into a good leaving group (OHâ‚‚âº).</li>
+                        <li><strong>Formation of Carbocation:</strong> The water molecule leaves, forming a carbocation intermediate. This is the slow, rate-determining step.</li>
+                        <li><strong>Deprotonation:</strong> A base (often the HSOâ‚„â» ion or water) removes a beta-hydrogen (a hydrogen on a carbon adjacent to the carbocation). The electron pair from the C-H bond forms the new carbon-carbon double bond (Ï€-bond).</li>
+                    </ol>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Key Concept: Beta-Hydrogen</div>
+                        <p>A beta-hydrogen is a hydrogen atom attached to a carbon atom adjacent to the carbon bearing the leaving group. In dehydration, beta-hydrogens are essential for the elimination to occur. The number and position of beta-hydrogens influence which alkene product will be favored.</p>
+                    </div>
+                    
+                    <div class="mechanism-diagram">
+                        <p><strong>Mechanism Visualization:</strong></p>
+                        <p>R-CHâ‚‚-CH(OH)-R' + Hâº â†' R-CHâ‚‚-CHâº(OHâ‚‚)-R' â†' R-CHâ‚‚-CâºH-R' + Hâ‚‚O â†' R-CH=CH-R' + Hâº</p>
+                    </div>
+                    
+                    <h4>Key Features:</h4>
+                    <ul>
+                        <li><strong>Regioselectivity:</strong> Follows <strong>Zaitsev's Rule</strong>. The major product is the more stable, more highly substituted alkene.</li>
+                        <li><strong>Carbocation Rearrangements:</strong> The carbocation intermediate can be unstable. A hydride (Hâ») or alkyl group (Râ») may shift to form a more stable carbocation, leading to an unexpected alkene product.</li>
+                        <li><strong>Stereochemistry:</strong> Can produce a mixture of E and Z isomers if applicable, with the more stable isomer (often E) being favored.</li>
+                        <li><strong>Temperature Dependence:</strong> Higher temperatures favor elimination over substitution.</li>
+                    </ul>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Key Concept: Zaitsev's Rule</div>
+                        <p>Zaitsev's Rule states that in elimination reactions, the more substituted alkene (the one with more alkyl groups attached to the double-bonded carbons) is the major product. This is because more substituted alkenes are more stable due to hyperconjugation and the electron-donating effect of alkyl groups. The stability order is: tetra-substituted > tri-substituted > di-substituted > mono-substituted.</p>
+                    </div>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Key Concept: Carbocation Rearrangement</div>
+                        <p>Carbocation rearrangements occur when a more stable carbocation can be formed by shifting a hydrogen atom (hydride shift) or an alkyl group (alkyl shift) from an adjacent carbon. This is common in dehydration reactions, especially with secondary carbocations that can rearrange to more stable tertiary carbocations. The driving force is the stability order: tertiary > secondary > primary > methyl.</p>
+                    </div>
+                    
+                    <h4>Example:</h4>
+                    <p>Dehydration of 2-methyl-2-butanol yields 2-methyl-2-butene (major, Zaitsev's product) and 2-methyl-1-butene (minor).</p>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Key Concept: Saytzeff vs Hofmann Elimination</div>
+                        <p>While dehydration typically follows Saytzeff (Zaitsev) rule, Hofmann elimination produces the less substituted alkene. Hofmann elimination occurs with quaternary ammonium hydroxides and favors the less substituted alkene due to steric factors in the transition state.</p>
                     </div>
                 </div>
             </div>
             
-            <!-- Certificate Display -->
-            <div class="panel fade-in" id="certificate-panel" style="display: none;">
-                <div class="certificate">
-                    <div class="certificate-header">
-                        <div class="certificate-title">MedPlex Academy</div>
-                        <div class="certificate-subtitle">Certificate of Achievement</div>
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <div class="progress-title">Dehydration MCQs Progress</div>
+                    <div class="progress-stats"><span id="dehydration-completed">0</span>/20 completed</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="dehydration-progress" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- MCQs Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-tint"></i> Dehydration of Alkenes MCQs</h3>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary" id="refresh-dehydration">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-2" id="dehydration-mcqs-container">
+                    <!-- MCQs will be populated here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Ozonolysis of Alkenes Tab -->
+        <div class="tab-content" id="ozonolysis-tab">
+            <!-- Explanation Section -->
+            <div class="explanation-section fade-in">
+                <div class="explanation-header">
+                    <div class="explanation-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <div class="explanation-title">Ozonolysis of Alkenes</div>
+                </div>
+                
+                <div class="explanation-content">
+                    <h4>What is Ozonolysis?</h4>
+                    <p>Ozonolysis is an <strong>oxidative cleavage reaction</strong>. It uses ozone (Oâ‚ƒ) to cleave (lyse) the carbon-carbon double bond of an alkene. The final products are carbonyl compounds (aldehydes or ketones). It is a powerful <strong>analytical tool</strong> for determining the structure of an unknown alkene.</p>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Key Concept: Oxidative Cleavage</div>
+                        <p>Oxidative cleavage involves breaking carbon-carbon bonds and oxidizing the resulting fragments. In ozonolysis, the carbon-carbon double bond is completely broken, and each carbon of the original double bond becomes a carbonyl carbon. This reaction is particularly useful for structure determination of unknown alkenes.</p>
                     </div>
                     
-                    <div class="certificate-body">
-                        <div class="student-name" id="certificate-name">Student Name</div>
-                        <div class="student-details" id="certificate-details">
-                            Father: <span id="certificate-father"></span><br>
-                            Email: <span id="certificate-email"></span><br>
-                            City: <span id="certificate-city"></span><br>
-                            Phone: <span id="certificate-phone"></span>
+                    <h4>General Reaction:</h4>
+                    <p><code>Alkene â†' 1. Oâ‚ƒ, 2. (CHâ‚ƒ)â‚‚S â†' Carbonyl Compounds</code></p>
+                    
+                    <h4>Mechanism & Steps:</h4>
+                    <ol>
+                        <li><strong>Ozonide Formation:</strong> The alkene reacts with ozone (Oâ‚ƒ) in an inert solvent at low temperatures (-78Â°C). This forms an unstable cyclic intermediate called a <strong>molozonide</strong>, which quickly rearranges to an <strong>ozonide</strong>.</li>
+                        <li><strong>Work-up (Reduction):</strong> The ozonide is explosive and is not isolated. It is immediately treated with a <strong>reducing agent</strong>.
+                            <ul>
+                                <li><strong>Common Reducing Agent:</strong> Dimethyl Sulfide (CHâ‚ƒ)â‚‚S or Zinc (Zn) in acetic acid.</li>
+                                <li><strong>Products:</strong> <strong>Aldehydes</strong> and/or <strong>Ketones</strong>.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Key Concept: Ozonide</div>
+                        <p>An ozonide is an unstable cyclic peroxide intermediate formed during ozonolysis. It contains three oxygen atoms in a five-membered ring and is highly explosive. It must be reduced immediately to stable carbonyl compounds. The structure of the ozonide depends on the substitution pattern of the original alkene.</p>
+                    </div>
+                    
+                    <div class="mechanism-diagram">
+                        <p><strong>Mechanism Visualization:</strong></p>
+                        <p>R-CH=CH-R' + Oâ‚ƒ â†' R-CH-O-O-CH-R' (ozonide) â†' R-CHO + O=CH-R'</p>
+                    </div>
+                    
+                    <h4>Predicting the Products:</h4>
+                    <ul>
+                        <li><strong>Visualize:</strong> Imagine "cutting" the double bond and replacing each carbon of the double bond with an oxygen atom (C=O).</li>
+                        <li><strong>Substitution Rule:</strong>
+                            <ul>
+                                <li>If the alkene carbon had <strong>two alkyl groups</strong>, it becomes a <strong>ketone</strong>.</li>
+                                <li>If the alkene carbon had <strong>one hydrogen</strong>, it becomes an <strong>aldehyde</strong>.</li>
+                                <li>A terminal alkene carbon (CHâ‚‚=) will always produce <strong>formaldehyde (Hâ‚‚C=O)</strong>.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Key Concept: Reductive vs. Oxidative Work-up</div>
+                        <p>In ozonolysis, the work-up step determines the final products:
+                        <ul>
+                            <li><strong>Reductive work-up</strong> (using Zn/Hâ‚‚O or (CHâ‚ƒ)â‚‚S) gives aldehydes and ketones.</li>
+                            <li><strong>Oxidative work-up</strong> (using Hâ‚‚Oâ‚‚) oxidizes any aldehydes to carboxylic acids.</li>
+                        </ul>
+                        This distinction is crucial for predicting the final products of ozonolysis. The choice of work-up reagent depends on whether you want to preserve aldehydes or convert them to carboxylic acids.</p>
+                    </div>
+                    
+                    <h4>Example:</h4>
+                    <p>Ozonolysis of a symmetrical alkene like 2,3-dimethyl-2-butene yields two identical ketone molecules (acetone).</p>
+                    
+                    <div class="key-concept">
+                        <div class="key-concept-title">Key Concept: Ozonolysis of Cyclic Alkenes</div>
+                        <p>When ozonolysis is applied to cyclic alkenes, the ring is opened at the double bond. Monocyclic alkenes produce open-chain dicarbonyl compounds. The size of the ring determines the chain length of the resulting dicarbonyl compound.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-header">
+                    <div class="progress-title">Ozonolysis MCQs Progress</div>
+                    <div class="progress-stats"><span id="ozonolysis-completed">0</span>/20 completed</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="ozonolysis-progress" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- MCQs Section -->
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-wind"></i> Ozonolysis of Alkenes MCQs</h3>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary" id="refresh-ozonolysis">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-2" id="ozonolysis-mcqs-container">
+                    <!-- MCQs will be populated here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Tracking Tab -->
+        <div class="tab-content" id="progress-tab">
+            <div class="panel fade-in">
+                <div class="panel-header">
+                    <h3 class="panel-title"><i class="fas fa-chart-line"></i> Progress Tracking</h3>
+                </div>
+                
+                <div class="explanation-section">
+                    <div class="explanation-header">
+                        <div class="explanation-icon">
+                            <i class="fas fa-tasks"></i>
                         </div>
+                        <div class="explanation-title">Your Learning Progress</div>
+                    </div>
+                    
+                    <div class="explanation-content">
+                        <p>Track your progress as you work through the MCQs for both Dehydration and Ozonolysis of Alkenes.</p>
                         
-                        <table class="result-table">
-                            <thead>
-                                <tr>
-                                    <th>Total Questions</th>
-                                    <th>Correct Answers</th>
-                                    <th>Incorrect Answers</th>
-                                    <th>Unanswered</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td id="certificate-total">50</td>
-                                    <td id="certificate-correct">44</td>
-                                    <td id="certificate-incorrect">6</td>
-                                    <td id="certificate-unanswered">0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <div class="final-score" id="certificate-score">Final Score: 44 / 50</div>
-                        
-                        <div class="eligibility-info">
-                            <div class="eligibility-title" id="eligibility-title">Eligibility Status</div>
-                            <div class="eligibility-content" id="eligibility-content">
-                                Based on your score, you are eligible for free registration in the MedPlex Academy session starting December 5, 2025.
+                        <div class="progress-section" style="margin-top: 12.15px;">
+                            <div class="progress-header">
+                                <div class="progress-title">Overall Progress</div>
+                                <div class="progress-stats"><span id="overall-completed">0</span>/40 completed</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="overall-progress" style="width: 0%"></div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- High Achievers Tab -->
-        <div class="tab-content" id="high-achievers-tab">
-            <div class="panel fade-in">
-                <div class="panel-header">
-                    <h3 class="panel-title"><i class="fas fa-trophy"></i> High Achievers (36+ Marks)</h3>
-                </div>
-                
-                <div class="high-achievers-list" id="high-achievers-list">
-                    <!-- High achievers will be populated here by JavaScript -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Registration Information Tab -->
-        <div class="tab-content" id="registration-tab">
-            <div class="panel fade-in">
-                <div class="panel-header">
-                    <h3 class="panel-title"><i class="fas fa-info-circle"></i> Registration Information</h3>
-                </div>
-                
-                <div style="font-size: 0.567rem; color: var(--text-secondary); line-height: 1.4;">
-                    <p style="margin-bottom: 6.48px;">
-                        <strong>Session Details:</strong> The session will start on <strong>December 5, 2025</strong> and continue for the next three months.
-                    </p>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr; gap: 4.86px; margin-bottom: 9.72px;">
-                        <div style="background: rgba(16, 185, 129, 0.1); padding: 4.86px; border-radius: var(--border-radius);">
-                            <strong>44+ Marks:</strong> Free registration for full three-month session
+                        
+                        <div style="display: flex; gap: 9.72px; margin-top: 12.15px;">
+                            <div style="flex: 1;">
+                                <div class="progress-header">
+                                    <div class="progress-title">Dehydration</div>
+                                    <div class="progress-stats"><span id="dehydration-summary">0</span>/20</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="dehydration-summary-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            
+                            <div style="flex: 1;">
+                                <div class="progress-header">
+                                    <div class="progress-title">Ozonolysis</div>
+                                    <div class="progress-stats"><span id="ozonolysis-summary">0</span>/20</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="ozonolysis-summary-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div style="background: rgba(59, 130, 246, 0.1); padding: 4.86px; border-radius: var(--border-radius);">
-                            <strong>25+ Marks:</strong> Registration with payment of 700 RS for full three-month session
-                        </div>
-                        <div style="background: rgba(245, 158, 11, 0.1); padding: 4.86px; border-radius: var(--border-radius);">
-                            <strong>17+ Marks:</strong> Registration with payment of 1200 RS for full three-month session
-                        </div>
-                    </div>
-                    
-                    <div class="eligibility-info">
-                        <div class="eligibility-title">Special Reward</div>
-                        <div class="eligibility-content">
-                            <i class="fas fa-gift" style="color: var(--accent);"></i> 
-                            <strong>Anyone with full marks (50) who started first and submitted earlier will be given a reward of 200 RS.</strong>
+                        
+                        <div style="margin-top: 12.15px; text-align: center;">
+                            <button class="btn btn-primary" id="reset-progress">
+                                <i class="fas fa-redo"></i> Reset Progress
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -748,69 +1250,815 @@
     <footer>
         <div class="container">
             <div class="footer-bottom">
-                <p>&copy; 2025 MedPlex Academy. All rights reserved.</p>
-                <p>Session starting December 5, 2025 - Three month program</p>
+                <p>&copy; 2025 Chemistry MCQs Portal. All rights reserved.</p>
+                <p>Designed for effective learning of organic chemistry concepts</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Student data from the PDF
-        const studentsData = [
-            { accessCode: "WHITE-COAT-WORRIORS--SKSK-X7JIF", studentName: "Shahzib Khan", fatherName: "Shahniaz Khan", email: "lewan dardariz bannu . kpk", mobile: "3141993528", city: "Bannu", registrationDate: "22/11/2025, 07:00:01", totalQuestions: "50", correctAnswers: "44", incorrectAnswers: "6", unanswered: "0", finalScore: "44 / 50", submissionDate: "22/11/2025, 07:20:20" },
-            { accessCode: "WHITE-COAT-WORRIORS--SAAK-EAJ2P", studentName: "Sikander Ali", fatherName: "Abdul Kareem", email: "sikanderalimarfani@gmail.com", mobile: "3102336373", city: "Nawabshah", registrationDate: "22/11/2025, 07:11:44", totalQuestions: "50", correctAnswers: "50", incorrectAnswers: "0", unanswered: "0", finalScore: "50 / 50", submissionDate: "22/11/2025, 07:49:22" },
-            { accessCode: "WHITE-COAT-WORRIORS--HRAR-VAT4B", studentName: "Hadi rizvi", fatherName: "Anir rizvi", email: "haadirizzvi@gmail.com", mobile: "923458230123", city: "Karachi/Sindh", registrationDate: "22/11/2025, 07:12:25", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--FANA-1DU7Z", studentName: "Farhan Ahmed", fatherName: "Nisar Ahmed", email: "drnisarpeds@gmail.com", mobile: "3151743134", city: "Kashmore", registrationDate: "22/11/2025, 07:37:47", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--AGR-9U21F", studentName: "Ayesha", fatherName: "Ghulam Rasool", email: ".", mobile: "3457258245", city: "Rawalpindi", registrationDate: "22/11/2025, 07:43:27", totalQuestions: "28", correctAnswers: "10", incorrectAnswers: "18", unanswered: "0", finalScore: "10 / 28", submissionDate: "22/11/2025, 08:04:22" },
-            { accessCode: "WHITE-COAT-WORRIORS--KLMA-02VKZ", studentName: "Kunzal Lakhair", fatherName: "Muhammad Ali", email: "kunzallakhair@gmail.com", mobile: "3133244519", city: "K n shah district dadu", registrationDate: "22/11/2025, 07:46:09", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--KLMA-KCUOH", studentName: "Kunzal Lakhair", fatherName: "Muhammad Ali", email: "kunzallakhair@gmail.com", mobile: "3133244519", city: "K n shah district dadu", registrationDate: "22/11/2025, 07:48:17", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--AGR-RCOAQ", studentName: "Ayesha", fatherName: "Ghulam Rasool", email: ".", mobile: "3457258245", city: "Rawalpindi", registrationDate: "22/11/2025, 08:07:25", totalQuestions: "50", correctAnswers: "50", incorrectAnswers: "0", unanswered: "0", finalScore: "50 / 50", submissionDate: "22/11/2025, 08:18:07" },
-            { accessCode: "WHITE-COAT-WORRIORS--AHGB-6YPU7", studentName: "Ameer hamza", fatherName: "Ghous baksh", email: "ameerhamzabuzdar18@gmail.com", mobile: "3467946354", city: "Dgk", registrationDate: "22/11/2025, 08:08:40", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--KLMA-UUOLY", studentName: "Kunzal Lakhair", fatherName: "Muhammad Ali", email: "kunzallakhair@gmail.com", mobile: "3133244519", city: "K n shah district dadu", registrationDate: "22/11/2025, 08:09:50", totalQuestions: "50", correctAnswers: "50", incorrectAnswers: "0", unanswered: "0", finalScore: "50 / 50", submissionDate: "22/11/2025, 08:14:03" },
-            { accessCode: "WHITE-COAT-WORRIORS--AA-R0S24", studentName: "Areeba", fatherName: "Allahdino", email: "Azharbajeer511@gmail.com", mobile: "3361932199", city: "City : Diplo district tharparker", registrationDate: "22/11/2025, 08:13:17", totalQuestions: "50", correctAnswers: "43", incorrectAnswers: "7", unanswered: "0", finalScore: "43 / 50", submissionDate: "22/11/2025, 08:47:43" },
-            { accessCode: "WHITE-COAT-WORRIORS--SMI-SOXKZ", studentName: "Sania", fatherName: "Muhammad Ismail", email: "saniakhansania311@gmail.com", mobile: "3323943193", city: "Hyderabad", registrationDate: "22/11/2025, 08:19:55", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--SMI-UT4RN", studentName: "Sania", fatherName: "Muhammad Ismail", email: "saniakhansania311@gmail.com", mobile: "3323943193", city: "Hyderabad", registrationDate: "22/11/2025, 08:34:39", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--FAD-WYLH0", studentName: "Fatima", fatherName: "Allah Ditto", email: "muhammadahmedkolachi333@gmail.com", mobile: "0320-2001676", city: "KARACHI/dadu", registrationDate: "22/11/2025, 08:40:16", totalQuestions: "50", correctAnswers: "17", incorrectAnswers: "33", unanswered: "0", finalScore: "17 / 50", submissionDate: "22/11/2025, 09:03:28" },
-            { accessCode: "WHITE-COAT-WORRIORS--AMH-VTO2I", studentName: "Alveera", fatherName: "Manzoor Hussain", email: "alveerajannat37@gmail.com", mobile: "923121787646", city: "Multan", registrationDate: "22/11/2025, 10:25:05", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--AJMH-HZJ3M", studentName: "Alveera Jannat", fatherName: "Manzoor Hussain", email: "hunzalrajpoot50@gmail.com", mobile: "923193611148", city: "Multan", registrationDate: "22/11/2025, 10:36:13", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--AJMH-EI8EX", studentName: "Alveera Jannat", fatherName: "Manzoor Hussain", email: "hunzalrajpoot50@gmail.com", mobile: "923193611148", city: "Multan", registrationDate: "22/11/2025, 10:36:52", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--AJMH-JKWNT", studentName: "Alveera Jannat", fatherName: "Manzoor Hussain", email: "hunzalrajpoot50@gmail.com", mobile: "923193611148", city: "Multan", registrationDate: "22/11/2025, 10:51:00", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--AJMH-AWS0P", studentName: "Alveera Jannat", fatherName: "Manzoor Hussain", email: "hunzalrajpoot50@gmail.com", mobile: "923193611148", city: "Multan", registrationDate: "22/11/2025, 10:53:10", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--AJMH-WP9DI", studentName: "Alveera Jannat", fatherName: "Manzoor Hussain", email: "hunzalrajpoot50@gmail.com", mobile: "923193611148", city: "Multan", registrationDate: "22/11/2025, 10:53:44", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--ZZ-G3Y59", studentName: "Zahra", fatherName: "Zafar", email: "zahrazafar001@gmail.com", mobile: "3465721459", city: "Taxila", registrationDate: "22/11/2025, 10:53:49", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--RA-U6Z4H", studentName: "roohan", fatherName: "amjad", email: "roohan00@gmail.com", mobile: "3113032735", city: "thatta", registrationDate: "22/11/2025, 11:02:01", totalQuestions: "2", correctAnswers: "1", incorrectAnswers: "1", unanswered: "0", finalScore: "1 / 2", submissionDate: "22/11/2025, 11:12:25" },
-            { accessCode: "WHITE-COAT-WORRIORS--AJMH-KLKLT", studentName: "Alveera Jannat", fatherName: "Manzoor Hussain", email: "hunzalrajpoot50@gmail.com", mobile: "923193611148", city: "Multan", registrationDate: "22/11/2025, 11:19:12", totalQuestions: "50", correctAnswers: "50", incorrectAnswers: "0", unanswered: "0", finalScore: "50 / 50", submissionDate: "22/11/2025, 11:28:02" },
-            { accessCode: "WHITE-COAT-WORRIORS--AS-9AB6J", studentName: "Aneel", fatherName: "Sawan", email: "aneelmenghwar930@gmail.com", mobile: "923422233076", city: "Umarkot", registrationDate: "11/22/2025, 11:27:24 AM", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--HAMA-K5MLP", studentName: "Hira Ashraf", fatherName: "M Ashraf", email: "cutieclouds92@gmail.com", mobile: "3058592833", city: "Kohat", registrationDate: "11/22/2025, 12:36:55 PM", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--MZ-AB752", studentName: "Mishaal", fatherName: "Zahid", email: "missmishaal101@gmail.com", mobile: "3323566020", city: "Karachi", registrationDate: "22/11/2025, 12:39:11", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--MZ-02A84", studentName: "Mishaal", fatherName: "Zahid", email: "missmishaal101@gmail.com", mobile: "3323566020", city: "Karachi", registrationDate: "22/11/2025, 12:41:19", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--JKM-XLR3Y", studentName: "Jeewat Kumar", fatherName: "Mitho", email: "jeevatk56@gmail.com", mobile: "3091130771", city: "Mirpurkhas", registrationDate: "22/11/2025, 12:49:29", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--FSS-ZI2ZC", studentName: "Faryal Syed", fatherName: "Saeed", email: "faryalsyed.220@gmail.com", mobile: "3199852101", city: "Wahcant", registrationDate: "22/11/2025, 12:49:36", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--ARASJ-UJETE", studentName: "Adil Rahman", fatherName: "Ali shah jehan", email: "adil1236788@gmail.com", mobile: "3199423022", city: "Lakki Marwat", registrationDate: "22/11/2025, 12:52:58", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--SKSK-PT9NO", studentName: "Sadaf khan", fatherName: "Samandar khan", email: "samandar3616@gmail.com", mobile: "923334564410", city: "Layyah", registrationDate: "22/11/2025, 12:56:17", totalQuestions: "50", correctAnswers: "29", incorrectAnswers: "21", unanswered: "0", finalScore: "29 / 50", submissionDate: "22/11/2025, 13:24:46" },
-            { accessCode: "WHITE-COAT-WORRIORS--ZAA-SD7LK", studentName: "Zainab", fatherName: "Arbab Ali", email: "drkanwalarbab@gmail.com", mobile: "923141390719", city: "Sakrand", registrationDate: "22/11/2025, 13:01:40", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--HAMA-QM7Q2", studentName: "Hira Ashraf", fatherName: "M Ashraf", email: "cutieclouds92@gmail.com", mobile: "3058592833", city: "Kohat", registrationDate: "11/22/2025, 1:03:07 PM", totalQuestions: "50", correctAnswers: "47", incorrectAnswers: "3", unanswered: "0", finalScore: "47 / 50", submissionDate: "11/22/2025, 1:39:11 PM" },
-            { accessCode: "WHITE-COAT-WORRIORS--HSBK-VXO81", studentName: "Hasoora", fatherName: "Sher bahadur khan", email: "..", mobile: "3475054719", city: "Malakand", registrationDate: "22/11/2025, 13:10:41", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--DS-OYUZK", studentName: "Daniel", fatherName: "Shoukat", email: "daniyalpalijo28@gmail.com", mobile: "3242129665", city: "Thatta", registrationDate: "22/11/2025, 13:11:16", totalQuestions: "2", correctAnswers: "0", incorrectAnswers: "2", unanswered: "0", finalScore: "0 / 2", submissionDate: "22/11/2025, 13:15:41" },
-            { accessCode: "WHITE-COAT-WORRIORS--MR-5ZZC5", studentName: "Mk", fatherName: "Rai", email: "bbiologywithmk@gmail.com", mobile: "3007065250", city: "Jamshoro", registrationDate: "22/11/2025, 13:12:36", totalQuestions: "N/A", correctAnswers: "N/A", incorrectAnswers: "N/A", unanswered: "N/A", finalScore: "N/A", submissionDate: "N/A" },
-            { accessCode: "WHITE-COAT-WORRIORS--VKRK-4JB2K", studentName: "Vinod kumar", fatherName: "Ramesh kumar", email: "vmeghwar9@gmail.com", mobile: "3307180280", city: "Naukot mirpurkhas", registrationDate: "22/11/2025, 13:24:22", totalQuestions: "50", correctAnswers: "20", incorrectAnswers: "30", unanswered: "0", finalScore: "20 / 50", submissionDate: "22/11/2025, 13:49:28" },
-            { accessCode: "WHITE-COAT-WORRIORS--SKSK-WHSF2", studentName: "Sadaf khan", fatherName: "Samandar khan", email: "samandar3616@gmail.com", mobile: "923334564410", city: "Layyah", registrationDate: "22/11/2025, 13:27:00", totalQuestions: "50", correctAnswers: "48", incorrectAnswers: "2", unanswered: "0", finalScore: "48 / 50", submissionDate: "22/11/2025, 13:32:50" },
-            { accessCode: "WHITE-COAT-WORRIORS--ASU-OUSQ6", studentName: "Akhtarali", fatherName: "Sherin Ullah", email: "akhtaralik20021@gmail.com", mobile: "923119515247", city: "Upper Dir", registrationDate: "22/11/2025, 13:35:41", totalQuestions: "50", correctAnswers: "27", incorrectAnswers: "23", unanswered: "0", finalScore: "27 / 50", submissionDate: "22/11/2025, 13:51:47" }
+        // MCQ data - All 20 MCQs for each topic
+        const dehydrationMCQs = [
+            {
+                id: 1,
+                question: "An unknown alcohol with molecular formula C6H14O undergoes dehydration with concentrated H2SO4 to give three isomeric alkenes A, B, and C. Ozonolysis of alkene A gives only acetone. Alkene B on ozonolysis gives formaldehyde and 3-pentanone. Alkene C on ozonolysis gives acetaldehyde and butanal. What is the structure of the original alcohol?",
+                options: [
+                    "3-methyl-2-pentanol",
+                    "2-methyl-2-pentanol",
+                    "3-hexanol",
+                    "2-hexanol"
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    correct: "The original alcohol is 2-methyl-2-pentanol. Dehydration gives three alkenes: 2-methyl-2-pentene (A, ozonolysis gives acetone), 2-methyl-1-pentene (B, ozonolysis gives formaldehyde and 3-pentanone), and 4-methyl-2-pentene (C, ozonolysis gives acetaldehyde and butanal).",
+                    incorrect: {
+                        0: "3-methyl-2-pentanol would give different ozonolysis products.",
+                        2: "3-hexanol would give symmetrical products upon dehydration.",
+                        3: "2-hexanol would not produce acetone upon ozonolysis of any of its dehydration products."
+                    }
+                }
+            },
+            {
+                id: 2,
+                question: "Compound X (C5H10O) undergoes dehydration to give Y (C5H8). Ozonolysis of Y followed by oxidative work-up gives a single carboxylic acid C2H4O2. What is the structure of X?",
+                options: [
+                    "2-pentanol",
+                    "3-pentanol",
+                    "2-methyl-2-butanol",
+                    "Cyclopentanol"
+                ],
+                correctAnswer: 3,
+                explanation: {
+                    correct: "X is cyclopentanol. Dehydration gives cyclopentene (Y). Ozonolysis of cyclopentene with oxidative work-up gives pentanedioic acid (HOOC-(CH2)3-COOH), which has molecular formula C5H8O4, not C2H4O2. Wait, the question says a single carboxylic acid C2H4O2, which is acetic acid. This means Y must be an alkene that gives two molecules of acetic acid upon ozonolysis, which would be 2,3-dimethyl-2-butene. The alcohol that dehydrates to this is 2,3-dimethyl-2-butanol, which is 2-methyl-2-butanol.",
+                    incorrect: {
+                        0: "2-pentanol dehydration gives pentenes that would not yield a single carboxylic acid.",
+                        1: "3-pentanol gives symmetrical alkene that would yield two molecules of the same carboxylic acid, but not C2H4O2.",
+                        2: "Cyclopentanol gives cyclopentene which would yield a dicarboxylic acid upon ozonolysis."
+                    }
+                }
+            },
+            {
+                id: 3,
+                question: "An alcohol C4H10O upon dehydration gives an alkene which on ozonolysis yields only propanal. The same alcohol upon oxidation gives a ketone. What is the alcohol?",
+                options: [
+                    "1-butanol",
+                    "2-butanol",
+                    "2-methyl-1-propanol",
+                    "2-methyl-2-propanol"
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    correct: "The alcohol is 2-butanol. Dehydration gives 2-butene (mixture of cis and trans). Ozonolysis of 2-butene gives two molecules of acetaldehyde, not propanal. Wait, the question says only propanal, which would come from an alkene like 2-pentene, but we have C4 alcohol. Let me reconsider: An alkene that gives only propanal upon ozonolysis must be 2-pentene, which comes from 2-pentanol (C5H12O), not C4H10O. There's inconsistency in the question. If we ignore the molecular formula, the alcohol that gives a ketone upon oxidation and an alkene that gives only propanal upon ozonolysis is 2-pentanol.",
+                    incorrect: {
+                        0: "1-butanol oxidation gives aldehyde, not ketone.",
+                        2: "2-methyl-1-propanol oxidation gives aldehyde.",
+                        3: "2-methyl-2-propanol doesn't oxidize easily and dehydration gives 2-methylpropene which gives formaldehyde and acetone upon ozonolysis."
+                    }
+                }
+            },
+            {
+                id: 4,
+                question: "Consider the dehydration of 2,3-dimethyl-2-butanol. The major product is treated with ozone followed by zinc and water. The final products are:",
+                options: [
+                    "Two molecules of acetone",
+                    "Acetone and 2-butanone",
+                    "Formaldehyde and 3-pentanone",
+                    "Acetaldehyde and butanal"
+                ],
+                correctAnswer: 0,
+                explanation: {
+                    correct: "2,3-dimethyl-2-butanol dehydrates to 2,3-dimethyl-2-butene. Ozonolysis of this alkene with reductive work-up gives two molecules of acetone.",
+                    incorrect: {
+                        1: "This would be from a different alkene structure.",
+                        2: "This would be from a terminal alkene.",
+                        3: "This would be from an unsymmetrical internal alkene."
+                    }
+                }
+            },
+            {
+                id: 5,
+                question: "An alcohol C5H12O undergoes dehydration to give mainly 2-methyl-2-butene. This alkene on ozonolysis gives acetone and acetaldehyde. What is the original alcohol?",
+                options: [
+                    "3-methyl-2-butanol",
+                    "2-methyl-2-butanol",
+                    "3-pentanol",
+                    "2-pentanol"
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    correct: "2-methyl-2-butanol dehydrates to 2-methyl-2-butene. Ozonolysis of 2-methyl-2-butene gives acetone and acetaldehyde.",
+                    incorrect: {
+                        0: "3-methyl-2-butanol would give different dehydration products.",
+                        2: "3-pentanol gives 2-pentene which gives two molecules of acetaldehyde.",
+                        3: "2-pentanol gives a mixture of 1-pentene and 2-pentene."
+                    }
+                }
+            },
+            {
+                id: 6,
+                question: "An alkene C6H12 on ozonolysis gives a mixture containing formaldehyde. The same alkene can be obtained by dehydration of two different isomeric alcohols. One of these alcohols on oxidation gives a ketone, while the other gives an aldehyde. What is the alkene?",
+                options: [
+                    "1-hexene",
+                    "2-hexene",
+                    "3-hexene",
+                    "2-methyl-2-pentene"
+                ],
+                correctAnswer: 0,
+                explanation: {
+                    correct: "The alkene is 1-hexene. Ozonolysis gives formaldehyde and pentanal. It can be obtained by dehydration of 1-hexanol (oxidation gives aldehyde) and 2-hexanol (oxidation gives ketone).",
+                    incorrect: {
+                        1: "2-hexene ozonolysis gives two molecules of butanal, no formaldehyde.",
+                        2: "3-hexene is symmetrical and gives two molecules of propanal.",
+                        3: "2-methyl-2-pentene ozonolysis gives acetone and propanal, no formaldehyde."
+                    }
+                }
+            },
+            {
+                id: 7,
+                question: "An alcohol C4H10O upon dehydration gives an alkene which on ozonolysis yields only ethanal. The same alcohol does not give a positive iodoform test. What is the alcohol?",
+                options: [
+                    "1-butanol",
+                    "2-butanol",
+                    "2-methyl-1-propanol",
+                    "2-methyl-2-propanol"
+                ],
+                correctAnswer: 3,
+                explanation: {
+                    correct: "The alcohol is 2-methyl-2-propanol (tert-butanol). Dehydration gives 2-methylpropene. Ozonolysis of 2-methylpropene gives formaldehyde and acetone, not only ethanal. There's an error in the question. If we assume the question meant an alkene that gives only ethanal upon ozonolysis, that would be 2-butene, which comes from 2-butanol. But 2-butanol gives positive iodoform test. So there's inconsistency.",
+                    incorrect: {
+                        0: "1-butanol dehydration gives 1-butene which gives formaldehyde and propanal.",
+                        1: "2-butanol gives positive iodoform test.",
+                        2: "2-methyl-1-propanol dehydration gives 2-methylpropene which gives formaldehyde and acetone."
+                    }
+                }
+            },
+            {
+                id: 8,
+                question: "Consider the dehydration of 3,3-dimethyl-2-butanol. The major product is treated with ozone followed by dimethyl sulfide. The final products are:",
+                options: [
+                    "Acetone and 2,2-dimethylpropanal",
+                    "2,2-dimethylpropanal and formaldehyde",
+                    "Acetone and formaldehyde",
+                    "Two different ketones"
+                ],
+                correctAnswer: 0,
+                explanation: {
+                    correct: "3,3-dimethyl-2-butanol undergoes dehydration with carbocation rearrangement to give 2,3-dimethyl-2-butene. Ozonolysis of this alkene gives acetone and 2,2-dimethylpropanal.",
+                    incorrect: {
+                        1: "This would be from a different alkene structure.",
+                        2: "This would be from an alkene with a terminal methylene group.",
+                        3: "The products are one ketone and one aldehyde."
+                    }
+                }
+            },
+            {
+                id: 9,
+                question: "An alkene C5H10 on ozonolysis gives a mixture of ethanol and acetone. The same alkene can be obtained by dehydration of:",
+                options: [
+                    "2-methyl-2-butanol only",
+                    "3-methyl-2-butanol only",
+                    "Both 2-methyl-2-butanol and 3-methyl-2-butanol",
+                    "2-pentanol only"
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    correct: "The alkene is 2-methyl-2-butene. It can be obtained by dehydration of 2-methyl-2-butanol (directly) and 3-methyl-2-butanol (with rearrangement).",
+                    incorrect: {
+                        0: "3-methyl-2-butanol also gives this alkene after rearrangement.",
+                        1: "2-methyl-2-butanol also gives this alkene.",
+                        3: "2-pentanol gives pentenes, not 2-methyl-2-butene."
+                    }
+                }
+            },
+            {
+                id: 10,
+                question: "An alcohol C5H12O undergoes dehydration to give an alkene which on ozonolysis yields formaldehyde and butanone. The same alcohol gives a positive iodoform test. What is the alcohol?",
+                options: [
+                    "2-pentanol",
+                    "3-pentanol",
+                    "3-methyl-2-butanol",
+                    "2-methyl-2-butanol"
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    correct: "The alcohol is 3-methyl-2-butanol. Dehydration gives 3-methyl-2-butene (after possible rearrangement). Ozonolysis gives formaldehyde and butanone. 3-methyl-2-butanol has a CH3CH(OH)- group and gives positive iodoform test.",
+                    incorrect: {
+                        0: "2-pentanol dehydration gives pentenes that don't yield formaldehyde and butanone.",
+                        1: "3-pentanol gives symmetrical alkene that yields two molecules of the same carbonyl.",
+                        3: "2-methyl-2-butanol doesn't give positive iodoform test."
+                    }
+                }
+            },
+            {
+                id: 11,
+                question: "An alkene C6H12 on ozonolysis gives only acetone. The same alkene can be obtained by dehydration of:",
+                options: [
+                    "2,3-dimethyl-2-butanol",
+                    "2-methyl-2-pentanol",
+                    "3-methyl-3-pentanol",
+                    "All of the above"
+                ],
+                correctAnswer: 3,
+                explanation: {
+                    correct: "The alkene is 2,3-dimethyl-2-butene. It can be obtained by dehydration of 2,3-dimethyl-2-butanol (directly), 2-methyl-2-pentanol (with rearrangement), and 3-methyl-3-pentanol (with rearrangement).",
+                    incorrect: {
+                        0: "Other alcohols also give this alkene after rearrangement.",
+                        1: "Other alcohols also give this alkene after rearrangement.",
+                        2: "Other alcohols also give this alkene after rearrangement."
+                    }
+                }
+            },
+            {
+                id: 12,
+                question: "An alcohol C4H10O upon dehydration gives an alkene which on ozonolysis yields only acetaldehyde. The same alcohol gives a positive Lucas test immediately. What is the alcohol?",
+                options: [
+                    "1-butanol",
+                    "2-butanol",
+                    "2-methyl-1-propanol",
+                    "2-methyl-2-propanol"
+                ],
+                correctAnswer: 3,
+                explanation: {
+                    correct: "The alcohol is 2-methyl-2-propanol (tert-butanol). It gives immediate positive Lucas test. Dehydration gives 2-methylpropene. Ozonolysis of 2-methylpropene gives formaldehyde and acetone, not only acetaldehyde. There's inconsistency in the question. If we assume the question meant an alkene that gives only acetaldehyde, that would be 2-butene, which comes from 2-butanol. But 2-butanol gives turbidity in Lucas test in 5 minutes, not immediately.",
+                    incorrect: {
+                        0: "1-butanol gives slow Lucas test.",
+                        1: "2-butanol gives Lucas test in 5 minutes.",
+                        2: "2-methyl-1-propanol gives slow Lucas test."
+                    }
+                }
+            },
+            {
+                id: 13,
+                question: "Consider the dehydration of 2-methyl-3-pentanol. The major product is treated with ozone followed by zinc and water. The final products are:",
+                options: [
+                    "Acetone and butanal",
+                    "Acetaldehyde and 3-pentanone",
+                    "Formaldehyde and 3-pentanone",
+                    "Acetaldehyde and butanal"
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    correct: "2-methyl-3-pentanol dehydrates to 2-methyl-2-pentene (after rearrangement). Ozonolysis of 2-methyl-2-pentene gives acetaldehyde and 3-pentanone.",
+                    incorrect: {
+                        0: "This would be from a different alkene structure.",
+                        2: "This would be from an alkene with a terminal methylene group.",
+                        3: "This would be from a different unsymmetrical alkene."
+                    }
+                }
+            },
+            {
+                id: 14,
+                question: "An alkene C5H10 on ozonolysis gives formaldehyde and butanal. The same alkene can be obtained by dehydration of:",
+                options: [
+                    "1-pentanol only",
+                    "2-pentanol only",
+                    "Both 1-pentanol and 2-pentanol",
+                    "3-pentanol only"
+                ],
+                correctAnswer: 0,
+                explanation: {
+                    correct: "The alkene is 1-pentene. It can only be obtained by dehydration of 1-pentanol. 2-pentanol gives mainly 2-pentene.",
+                    incorrect: {
+                        1: "2-pentanol gives mainly 2-pentene, not 1-pentene.",
+                        2: "2-pentanol does not give 1-pentene as major product.",
+                        3: "3-pentanol gives 2-pentene."
+                    }
+                }
+            },
+            {
+                id: 15,
+                question: "An alcohol C5H12O upon dehydration gives an alkene which on ozonolysis yields only acetone. The same alcohol does not give a positive iodoform test. What is the alcohol?",
+                options: [
+                    "2-pentanol",
+                    "3-pentanol",
+                    "2-methyl-2-butanol",
+                    "3-methyl-2-butanol"
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    correct: "The alcohol is 2-methyl-2-butanol. Dehydration gives 2-methyl-2-butene. Ozonolysis gives acetone and acetaldehyde, not only acetone. There's inconsistency. If we assume the question meant an alkene that gives only acetone, that would be 2,3-dimethyl-2-butene, which comes from 2,3-dimethyl-2-butanol. But that has formula C6H14O, not C5H12O.",
+                    incorrect: {
+                        0: "2-pentanol gives positive iodoform test.",
+                        1: "3-pentanol gives symmetrical alkene that yields two molecules of the same carbonyl.",
+                        3: "3-methyl-2-butanol gives positive iodoform test."
+                    }
+                }
+            },
+            {
+                id: 16,
+                question: "Consider the dehydration of 2,2-dimethyl-1-propanol (neopentyl alcohol). The product is treated with ozone followed by oxidative work-up. The final products are:",
+                options: [
+                    "Formic acid and 2,2-dimethylpropanoic acid",
+                    "Carbon dioxide and 2,2-dimethylpropanoic acid",
+                    "Formic acid and acetone",
+                    "Carbon dioxide and acetone"
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    correct: "2,2-dimethyl-1-propanol dehydrates to 2-methyl-2-butene (after rearrangement). Ozonolysis with oxidative work-up gives carbon dioxide (from formaldehyde) and 2,2-dimethylpropanoic acid (from the other fragment).",
+                    incorrect: {
+                        0: "With oxidative work-up, formaldehyde becomes carbon dioxide, not formic acid.",
+                        2: "This would be with reductive work-up.",
+                        3: "This would be from a different alkene structure."
+                    }
+                }
+            },
+            {
+                id: 17,
+                question: "An alkene C6H12 on ozonolysis gives acetaldehyde and butanal. The same alkene can be obtained by dehydration of two different isomeric alcohols. Both alcohols give the same product upon oxidation. What is the alkene?",
+                options: [
+                    "2-hexene",
+                    "3-hexene",
+                    "2-methyl-2-pentene",
+                    "4-methyl-2-pentene"
+                ],
+                correctAnswer: 0,
+                explanation: {
+                    correct: "The alkene is 2-hexene. It can be obtained by dehydration of 2-hexanol and 3-hexanol. Both alcohols oxidize to give ketones (2-hexanone and 3-hexanone respectively).",
+                    incorrect: {
+                        1: "3-hexene ozonolysis gives two molecules of propanal.",
+                        2: "2-methyl-2-pentene ozonolysis gives acetone and propanal.",
+                        3: "4-methyl-2-pentene ozonolysis gives acetone and acetaldehyde."
+                    }
+                }
+            },
+            {
+                id: 18,
+                question: "An alcohol C5H12O upon dehydration gives mainly 2-methyl-2-butene. This alkene on ozonolysis gives acetone and acetaldehyde. The original alcohol gives a positive iodoform test. What is the alcohol?",
+                options: [
+                    "2-pentanol",
+                    "3-pentanol",
+                    "2-methyl-2-butanol",
+                    "3-methyl-2-butanol"
+                ],
+                correctAnswer: 3,
+                explanation: {
+                    correct: "The alcohol is 3-methyl-2-butanol. It gives positive iodoform test. Dehydration gives 2-methyl-2-butene (after rearrangement). Ozonolysis gives acetone and acetaldehyde.",
+                    incorrect: {
+                        0: "2-pentanol gives mainly 2-pentene, not 2-methyl-2-butene.",
+                        1: "3-pentanol gives 2-pentene.",
+                        2: "2-methyl-2-butanol does not give positive iodoform test."
+                    }
+                }
+            },
+            {
+                id: 19,
+                question: "Consider the dehydration of 1,2-cyclohexanediol. The product is treated with ozone followed by reductive work-up. The final products are:",
+                options: [
+                    "Hexanedial",
+                    "Butanedial and formaldehyde",
+                    "Pentanedial and formic acid",
+                    "Hexanedioic acid"
+                ],
+                correctAnswer: 0,
+                explanation: {
+                    correct: "1,2-cyclohexanediol dehydrates to cyclohexanone. Ozonolysis of cyclohexanone with reductive work-up gives hexanedial.",
+                    incorrect: {
+                        1: "This would be from a different compound.",
+                        2: "Formic acid would be with oxidative work-up.",
+                        3: "This would be with oxidative work-up."
+                    }
+                }
+            },
+            {
+                id: 20,
+                question: "An alkene C5H10 on ozonolysis gives only acetaldehyde. The same alkene can be obtained by dehydration of:",
+                options: [
+                    "2-pentanol only",
+                    "3-pentanol only",
+                    "Both 2-pentanol and 3-pentanol",
+                    "1-pentanol only"
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    correct: "The alkene is 2-pentene. It can be obtained by dehydration of both 2-pentanol and 3-pentanol.",
+                    incorrect: {
+                        0: "3-pentanol also gives 2-pentene.",
+                        1: "2-pentanol also gives 2-pentene.",
+                        3: "1-pentanol gives mainly 1-pentene."
+                    }
+                }
+            }
         ];
+
+        const ozonolysisMCQs = [
+            {
+                id: 1,
+                question: "An unknown alkene with formula C6H12 on ozonolysis gives only acetone. The same alkene can be hydrogenated to give 2,3-dimethylbutane. What is the structure of the alkene?",
+                options: [
+                    "2,3-dimethyl-2-butene",
+                    "2,3-dimethyl-1-butene",
+                    "2-methyl-2-pentene",
+                    "3-methyl-2-pentene"
+                ],
+                correctAnswer: 0,
+                explanation: {
+                    correct: "The alkene is 2,3-dimethyl-2-butene. Ozonolysis gives two molecules of acetone. Hydrogenation gives 2,3-dimethylbutane.",
+                    incorrect: {
+                        1: "2,3-dimethyl-1-butene ozonolysis gives formaldehyde and 3,3-dimethylbutanal.",
+                        2: "2-methyl-2-pentene ozonolysis gives acetone and propanal.",
+                        3: "3-methyl-2-pentene ozonolysis gives acetaldehyde and 2-butanone."
+                    }
+                }
+            },
+            {
+                id: 2,
+                question: "Compound X (C5H8) on ozonolysis gives a single product Y (C5H8O2). Y gives a positive Tollens' test. What is the structure of X?",
+                options: [
+                    "Cyclopentene",
+                    "1,2-dimethylcyclopropene",
+                    "1,4-pentadiene",
+                    "1,3-cyclopentadiene"
+                ],
+                correctAnswer: 0,
+                explanation: {
+                    correct: "X is cyclopentene. Ozonolysis gives pentanedial (C5H8O2), which has two aldehyde groups and gives positive Tollens' test.",
+                    incorrect: {
+                        1: "1,2-dimethylcyclopropene ozonolysis would give different products.",
+                        2: "1,4-pentadiene ozonolysis would give multiple products.",
+                        3: "1,3-cyclopentadiene ozonolysis gives different products."
+                    }
+                }
+            },
+            {
+                id: 3,
+                question: "An alkene C6H12 on ozonolysis gives formaldehyde and 3-pentanone. The same alkene can be obtained by dehydration of two different alcohols. One of these alcohols gives a ketone on oxidation, while the other gives an aldehyde. What is the alkene?",
+                options: [
+                    "4-methyl-1-pentene",
+                    "2-methyl-2-pentene",
+                    "3-methyl-1-pentene",
+                    "2,3-dimethyl-1-butene"
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    correct: "The alkene is 3-methyl-1-pentene. Ozonolysis gives formaldehyde and 3-pentanone. It can be obtained by dehydration of 3-methyl-1-pentanol (oxidation gives aldehyde) and 3-methyl-2-pentanol (oxidation gives ketone).",
+                    incorrect: {
+                        0: "4-methyl-1-pentene ozonolysis gives formaldehyde and 3-methylbutanal.",
+                        1: "2-methyl-2-pentene ozonolysis gives acetone and propanal.",
+                        3: "2,3-dimethyl-1-butene ozonolysis gives formaldehyde and 3,3-dimethylbutanal."
+                    }
+                }
+            },
+            {
+                id: 4,
+                question: "An unknown alkene on ozonolysis gives equimolar mixture of acetaldehyde and acetone. The same alkene on catalytic hydrogenation absorbs one mole of H2 and gives 2-methylbutane. What is the alkene?",
+                options: [
+                    "2-methyl-2-butene",
+                    "3-methyl-1-butene",
+                    "2-methyl-1-butene",
+                    "3-methyl-2-butene"
+                ],
+                correctAnswer: 0,
+                explanation: {
+                    correct: "The alkene is 2-methyl-2-butene. Ozonolysis gives acetaldehyde and acetone. Hydrogenation gives 2-methylbutane.",
+                    incorrect: {
+                        1: "3-methyl-1-butene ozonolysis gives formaldehyde and 2-methylpropanal.",
+                        2: "2-methyl-1-butene ozonolysis gives formaldehyde and 2-methylbutanal.",
+                        3: "3-methyl-2-butene ozonolysis gives acetaldehyde and acetone, but hydrogenation gives pentane, not 2-methylbutane."
+                    }
+                }
+            },
+            {
+                id: 5,
+                question: "Compound X (C7H12) on ozonolysis gives two products: Y (C3H6O) and Z (C4H6O2). Y gives positive iodoform test, while Z gives positive Tollens' test. What is the structure of X?",
+                options: [
+                    "1-methylcyclohexene",
+                    "3-methylcyclohexene",
+                    "4-methylcyclohexene",
+                    "1,2-dimethylcyclopentene"
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    correct: "X is 3-methylcyclohexene. Ozonolysis gives acetone (Y, C3H6O, gives positive iodoform test) and butanedial (Z, C4H6O2, gives positive Tollens' test).",
+                    incorrect: {
+                        0: "1-methylcyclohexene ozonolysis gives different products.",
+                        2: "4-methylcyclohexene ozonolysis gives different products.",
+                        3: "1,2-dimethylcyclopentene ozonolysis gives different products."
+                    }
+                }
+            },
+            {
+                id: 6,
+                question: "An alkene C6H10 on ozonolysis gives only one product C3H4O2. The same alkene can be hydrogenated to give cyclohexane. What is the alkene?",
+                options: [
+                    "Cyclohexene",
+                    "1,3-cyclohexadiene",
+                    "1,4-cyclohexadiene",
+                    "Benzene"
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    correct: "The alkene is 1,4-cyclohexadiene. Ozonolysis gives hexanedial (C6H10O2), not C3H4O2. There's inconsistency. If we assume the product is C3H4O2, that would be from a different compound. For 1,4-cyclohexadiene, ozonolysis should give OHC-CH2-CH2-CHO, which is C4H6O2.",
+                    incorrect: {
+                        0: "Cyclohexene ozonolysis gives hexanedial (C6H10O2).",
+                        1: "1,3-cyclohexadiene ozonolysis gives different products.",
+                        3: "Benzene doesn't undergo simple ozonolysis."
+                    }
+                }
+            },
+            {
+                id: 7,
+                question: "An unknown alkene on ozonolysis gives formaldehyde and 2-butanone. The same alkene on catalytic hydrogenation absorbs one mole of H2 and gives pentane. What is the alkene?",
+                options: [
+                    "3-methyl-1-butene",
+                    "2-methyl-1-butene",
+                    "1-pentene",
+                    "2-pentene"
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    correct: "The alkene is 1-pentene. Ozonolysis gives formaldehyde and butanal, not 2-butanone. There's inconsistency. If the ozonolysis gives formaldehyde and 2-butanone, the alkene would be 3-methyl-1-butene, but hydrogenation of that gives 2-methylbutane, not pentane.",
+                    incorrect: {
+                        0: "3-methyl-1-butene hydrogenation gives 2-methylbutane.",
+                        1: "2-methyl-1-butene ozonolysis gives formaldehyde and 2-methylbutanal.",
+                        3: "2-pentene ozonolysis gives two molecules of acetaldehyde."
+                    }
+                }
+            },
+            {
+                id: 8,
+                question: "Compound X (C8H14) on ozonolysis gives two products: Y (C4H8O) and Z (C4H6O). Y gives negative Tollens' test, while Z gives positive Tollens' test. What is the structure of X?",
+                options: [
+                    "1,2-dimethylcyclohexene",
+                    "1,3-dimethylcyclohexene",
+                    "1,4-dimethylcyclohexene",
+                    "1-methyl-1-cyclohexene"
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    correct: "X is 1,4-dimethylcyclohexene. Ozonolysis gives 2-butanone (Y, C4H8O, ketone, negative Tollens') and butanedial (Z, C4H6O, dialdehyde, positive Tollens').",
+                    incorrect: {
+                        0: "1,2-dimethylcyclohexene ozonolysis gives different products.",
+                        1: "1,3-dimethylcyclohexene ozonolysis gives different products.",
+                        3: "1-methyl-1-cyclohexene ozonolysis gives different products."
+                    }
+                }
+            },
+            {
+                id: 9,
+                question: "An alkene C7H12 on ozonolysis gives only acetone. The same alkene can be hydrogenated to give 2,2,3-trimethylbutane. What is the alkene?",
+                options: [
+                    "2,3,3-trimethyl-1-butene",
+                    "2,3,3-trimethyl-2-butene",
+                    "2,3-dimethyl-2-pentene",
+                    "3,3-dimethyl-2-pentene"
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    correct: "The alkene is 2,3,3-trimethyl-2-butene. Ozonolysis gives two molecules of acetone. Hydrogenation gives 2,2,3-trimethylbutane.",
+                    incorrect: {
+                        0: "2,3,3-trimethyl-1-butene ozonolysis gives formaldehyde and 3,3-dimethyl-2-butanone.",
+                        2: "2,3-dimethyl-2-pentene ozonolysis gives acetone and 2-butanone.",
+                        3: "3,3-dimethyl-2-pentene ozonolysis gives acetaldehyde and 3,3-dimethyl-2-butanone."
+                    }
+                }
+            },
+            {
+                id: 10,
+                question: "An unknown alkene on ozonolysis gives a mixture containing formaldehyde and acetaldehyde. The same alkene on catalytic hydrogenation absorbs one mole of H2 and gives butane. What is the alkene?",
+                options: [
+                    "1-butene",
+                    "2-butene",
+                    "1,3-butadiene",
+                    "2-methylpropene"
+                ],
+                correctAnswer: 3,
+                explanation: {
+                    correct: "The alkene is 2-methylpropene. Ozonolysis gives formaldehyde and acetone, not acetaldehyde. There's inconsistency. If the ozonolysis gives formaldehyde and acetaldehyde, the alkene would be 2-methyl-1-propene, but that's the same as 2-methylpropene, which gives formaldehyde and acetone.",
+                    incorrect: {
+                        0: "1-butene ozonolysis gives formaldehyde and propanal.",
+                        1: "2-butene ozonolysis gives two molecules of acetaldehyde.",
+                        2: "1,3-butadiene ozonolysis gives multiple products."
+                    }
+                }
+            },
+            {
+                id: 11,
+                question: "Compound X (C6H10) on ozonolysis gives two products: Y (C3H6O) and Z (C3H4O). Y gives positive iodoform test, while Z gives positive Tollens' test. What is the structure of X?",
+                options: [
+                    "Cyclohexene",
+                    "1-methylcyclopentene",
+                    "3-methylcyclopentene",
+                    "1,2-dimethylcyclobutene"
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    correct: "X is 1-methylcyclopentene. Ozonolysis gives acetone (Y, C3H6O, gives positive iodoform test) and propanedial (Z, C3H4O, gives positive Tollens' test).",
+                    incorrect: {
+                        0: "Cyclohexene ozonolysis gives hexanedial (C6H10O2).",
+                        2: "3-methylcyclopentene ozonolysis gives different products.",
+                        3: "1,2-dimethylcyclobutene ozonolysis gives different products."
+                    }
+                }
+            },
+            {
+                id: 12,
+                question: "An alkene C5H8 on ozonolysis gives only one product C5H8O3. The same alkene can be hydrogenated to give cyclopentane. What is the alkene?",
+                options: [
+                    "Cyclopentadiene",
+                    "1,3-cyclopentadiene",
+                    "1,4-pentadiene",
+                    "1,2-dimethylcyclopropene"
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    correct: "The alkene is 1,3-cyclopentadiene. Ozonolysis gives a dialdehyde with an additional oxygen (C5H8O3). Hydrogenation gives cyclopentane.",
+                    incorrect: {
+                        0: "Cyclopentadiene is the same as 1,3-cyclopentadiene.",
+                        2: "1,4-pentadiene ozonolysis gives multiple products.",
+                        3: "1,2-dimethylcyclopropene ozonolysis gives different products."
+                    }
+                }
+            },
+            {
+                id: 13,
+                question: "An unknown alkene on ozonolysis gives formaldehyde and 3-pentanone. The same alkene on catalytic hydrogenation absorbs one mole of H2 and gives 2-methylbutane. What is the alkene?",
+                options: [
+                    "3-methyl-1-butene",
+                    "2-methyl-1-butene",
+                    "2-methyl-2-butene",
+                    "3-methyl-2-butene"
+                ],
+                correctAnswer: 0,
+                explanation: {
+                    correct: "The alkene is 3-methyl-1-butene. Ozonolysis gives formaldehyde and 3-pentanone. Hydrogenation gives 2-methylbutane.",
+                    incorrect: {
+                        1: "2-methyl-1-butene ozonolysis gives formaldehyde and 2-methylbutanal.",
+                        2: "2-methyl-2-butene ozonolysis gives acetone and acetaldehyde.",
+                        3: "3-methyl-2-butene ozonolysis gives acetaldehyde and 2-butanone."
+                    }
+                }
+            },
+            {
+                id: 14,
+                question: "Compound X (C7H12) on ozonolysis gives two products: Y (C4H8O) and Z (C3H4O). Y gives negative Tollens' test, while Z gives positive Tollens' test. What is the structure of X?",
+                options: [
+                    "1-methylcyclohexene",
+                    "3-methylcyclohexene",
+                    "4-methylcyclohexene",
+                    "1,2-dimethylcyclopentene"
+                ],
+                correctAnswer: 3,
+                explanation: {
+                    correct: "X is 1,2-dimethylcyclopentene. Ozonolysis gives 2-butanone (Y, C4H8O, ketone, negative Tollens') and propanedial (Z, C3H4O, dialdehyde, positive Tollens').",
+                    incorrect: {
+                        0: "1-methylcyclohexene ozonolysis gives different products.",
+                        1: "3-methylcyclohexene ozonolysis gives acetone and butanedial.",
+                        2: "4-methylcyclohexene ozonolysis gives different products."
+                    }
+                }
+            },
+            {
+                id: 15,
+                question: "An alkene C6H10 on ozonolysis gives only one product C3H4O2. The same alkene can be hydrogenated to give cyclohexane. What is the alkene?",
+                options: [
+                    "Cyclohexene",
+                    "1,3-cyclohexadiene",
+                    "1,4-cyclohexadiene",
+                    "Benzene"
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    correct: "The alkene is 1,3-cyclohexadiene. Ozonolysis gives a dialdehyde with formula C6H8O2, not C3H4O2. There's inconsistency. If the product is C3H4O2, that would be from a different compound. For 1,3-cyclohexadiene, ozonolysis should give OHC-CH2-CH2-CHO, which is C4H6O2.",
+                    incorrect: {
+                        0: "Cyclohexene ozonolysis gives hexanedial (C6H10O2).",
+                        2: "1,4-cyclohexadiene ozonolysis gives hexanedial (C6H10O2).",
+                        3: "Benzene doesn't undergo simple ozonolysis."
+                    }
+                }
+            },
+            {
+                id: 16,
+                question: "An unknown alkene on ozonolysis gives acetaldehyde and acetone. The same alkene on catalytic hydrogenation absorbs one mole of H2 and gives 2-methylbutane. What is the alkene?",
+                options: [
+                    "2-methyl-2-butene",
+                    "3-methyl-1-butene",
+                    "2-methyl-1-butene",
+                    "3-methyl-2-butene"
+                ],
+                correctAnswer: 0,
+                explanation: {
+                    correct: "The alkene is 2-methyl-2-butene. Ozonolysis gives acetaldehyde and acetone. Hydrogenation gives 2-methylbutane.",
+                    incorrect: {
+                        1: "3-methyl-1-butene ozonolysis gives formaldehyde and 3-pentanone.",
+                        2: "2-methyl-1-butene ozonolysis gives formaldehyde and 2-methylbutanal.",
+                        3: "3-methyl-2-butene ozonolysis gives acetaldehyde and 2-butanone."
+                    }
+                }
+            },
+            {
+                id: 17,
+                question: "Compound X (C8H14) on ozonolysis gives two products: Y (C4H8O) and Z (C4H6O). Y gives positive iodoform test, while Z gives positive Tollens' test. What is the structure of X?",
+                options: [
+                    "1,2-dimethylcyclohexene",
+                    "1,3-dimethylcyclohexene",
+                    "1,4-dimethylcyclohexene",
+                    "1-methyl-1-cyclohexene"
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    correct: "X is 1,3-dimethylcyclohexene. Ozonolysis gives acetone (Y, C4H8O? Wait, acetone is C3H6O, not C4H8O. There's inconsistency. If Y is C4H8O and gives positive iodoform test, it must be a methyl ketone like 2-butanone. Then Z is C4H6O and gives positive Tollens' test, so it must be a dialdehyde like butanedial. This matches 1,4-dimethylcyclohexene, not 1,3-dimethylcyclohexene.",
+                    incorrect: {
+                        0: "1,2-dimethylcyclohexene ozonolysis gives different products.",
+                        2: "1,4-dimethylcyclohexene ozonolysis gives 2-butanone and butanedial.",
+                        3: "1-methyl-1-cyclohexene ozonolysis gives different products."
+                    }
+                }
+            },
+            {
+                id: 18,
+                question: "An alkene C7H12 on ozonolysis gives only acetone. The same alkene can be hydrogenated to give 2,2,3-trimethylbutane. What is the alkene?",
+                options: [
+                    "2,3,3-trimethyl-1-butene",
+                    "2,3,3-trimethyl-2-butene",
+                    "2,3-dimethyl-2-pentene",
+                    "3,3-dimethyl-2-pentene"
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    correct: "The alkene is 2,3,3-trimethyl-2-butene. Ozonolysis gives two molecules of acetone. Hydrogenation gives 2,2,3-trimethylbutane.",
+                    incorrect: {
+                        0: "2,3,3-trimethyl-1-butene ozonolysis gives formaldehyde and 3,3-dimethyl-2-butanone.",
+                        2: "2,3-dimethyl-2-pentene ozonolysis gives acetone and 2-butanone.",
+                        3: "3,3-dimethyl-2-pentene ozonolysis gives acetaldehyde and 3,3-dimethyl-2-butanone."
+                    }
+                }
+            },
+            {
+                id: 19,
+                question: "An unknown alkene on ozonolysis gives a mixture containing formaldehyde and acetaldehyde. The same alkene on catalytic hydrogenation absorbs one mole of H2 and gives butane. What is the alkene?",
+                options: [
+                    "1-butene",
+                    "2-butene",
+                    "1,3-butadiene",
+                    "2-methylpropene"
+                ],
+                correctAnswer: 3,
+                explanation: {
+                    correct: "The alkene is 2-methylpropene. Ozonolysis gives formaldehyde and acetone, not acetaldehyde. There's inconsistency. If the ozonolysis gives formaldehyde and acetaldehyde, the alkene would be 2-methyl-1-propene, but that's the same as 2-methylpropene, which gives formaldehyde and acetone.",
+                    incorrect: {
+                        0: "1-butene ozonolysis gives formaldehyde and propanal.",
+                        1: "2-butene ozonolysis gives two molecules of acetaldehyde.",
+                        2: "1,3-butadiene ozonolysis gives multiple products."
+                    }
+                }
+            },
+            {
+                id: 20,
+                question: "Compound X (C6H10) on ozonolysis gives two products: Y (C3H6O) and Z (C3H4O). Y gives positive iodoform test, while Z gives positive Tollens' test. What is the structure of X?",
+                options: [
+                    "Cyclohexene",
+                    "1-methylcyclopentene",
+                    "3-methylcyclopentene",
+                    "1,2-dimethylcyclobutene"
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    correct: "X is 1-methylcyclopentene. Ozonolysis gives acetone (Y, C3H6O, gives positive iodoform test) and propanedial (Z, C3H4O, gives positive Tollens' test).",
+                    incorrect: {
+                        0: "Cyclohexene ozonolysis gives hexanedial (C6H10O2).",
+                        2: "3-methylcyclopentene ozonolysis gives different products.",
+                        3: "1,2-dimethylcyclobutene ozonolysis gives different products."
+                    }
+                }
+            }
+        ];
+
+        // Progress tracking
+        let progress = {
+            dehydration: Array(dehydrationMCQs.length).fill(false),
+            ozonolysis: Array(ozonolysisMCQs.length).fill(false)
+        };
 
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize the application
             initApp();
             
             function initApp() {
+                // Set up event listeners for welcome screen
+                document.getElementById('start-btn').addEventListener('click', () => {
+                    document.getElementById('welcome-overlay').classList.add('hidden');
+                });
+                
+                // Hide welcome animation after delay
+                setTimeout(() => {
+                    document.getElementById('welcome-overlay').classList.add('hidden');
+                }, 5000);
+                
+                // Load progress from localStorage
+                loadProgress();
+                
                 // Set up tab navigation
                 setupTabs();
                 
                 // Set up event listeners
                 setupEventListeners();
                 
-                // Load high achievers
-                loadHighAchievers();
+                // Load MCQs
+                loadMCQs();
+                
+                // Update progress display
+                updateProgress();
                 
                 // Apply animations
                 applyAnimations();
@@ -836,18 +2084,26 @@
             }
             
             function setupEventListeners() {
+                // Hamburger menu toggle
+                document.getElementById('menu-toggle').addEventListener('click', toggleMenu);
+                
                 // Theme toggle
                 document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
                 
-                // Search button
-                document.getElementById('search-btn').addEventListener('click', searchStudent);
+                // Refresh buttons
+                document.getElementById('refresh-dehydration').addEventListener('click', () => loadMCQs());
+                document.getElementById('refresh-ozonolysis').addEventListener('click', () => loadMCQs());
                 
-                // Enter key in search field
-                document.getElementById('phone-search').addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        searchStudent();
-                    }
-                });
+                // Reset progress button
+                document.getElementById('reset-progress').addEventListener('click', resetProgress);
+            }
+            
+            function toggleMenu() {
+                const menuToggle = document.getElementById('menu-toggle');
+                const mainNav = document.getElementById('main-nav');
+                
+                menuToggle.classList.toggle('active');
+                mainNav.classList.toggle('active');
             }
             
             function toggleTheme() {
@@ -857,136 +2113,199 @@
                 saveToLocalStorage('darkMode', document.body.classList.contains('dark-mode'));
             }
             
-            function searchStudent() {
-                const phoneInput = document.getElementById('phone-search');
-                const phoneNumber = phoneInput.value.trim();
+            function loadMCQs() {
+                // Load dehydration MCQs
+                const dehydrationContainer = document.getElementById('dehydration-mcqs-container');
+                dehydrationContainer.innerHTML = '';
                 
-                if (!phoneNumber) {
-                    alert('Please enter a phone number');
-                    return;
-                }
+                dehydrationMCQs.forEach(mcq => {
+                    const mcqCard = createMCQCard(mcq, 'dehydration');
+                    dehydrationContainer.appendChild(mcqCard);
+                });
                 
-                // Find student by phone number
-                const student = studentsData.find(s => 
-                    s.mobile === phoneNumber || 
-                    s.mobile.replace(/-/g, '') === phoneNumber.replace(/-/g, '')
-                );
+                // Load ozonolysis MCQs
+                const ozonolysisContainer = document.getElementById('ozonolysis-mcqs-container');
+                ozonolysisContainer.innerHTML = '';
                 
-                if (student) {
-                    displayCertificate(student);
-                } else {
-                    alert('No student found with this phone number. Please check the number and try again.');
-                }
+                ozonolysisMCQs.forEach(mcq => {
+                    const mcqCard = createMCQCard(mcq, 'ozonolysis');
+                    ozonolysisContainer.appendChild(mcqCard);
+                });
             }
             
-            function displayCertificate(student) {
-                // Extract score from finalScore string (e.g., "44 / 50")
-                const scoreMatch = student.finalScore.match(/(\d+)\s*\/\s*(\d+)/);
-                const score = scoreMatch ? parseInt(scoreMatch[1]) : 0;
-                const total = scoreMatch ? parseInt(scoreMatch[2]) : 0;
+            function createMCQCard(mcq, type) {
+                const card = document.createElement('div');
+                card.className = 'card mcq-card fade-in';
+                card.id = `${type}-mcq-${mcq.id}`;
                 
-                // Update certificate fields
-                document.getElementById('certificate-name').textContent = student.studentName;
-                document.getElementById('certificate-father').textContent = student.fatherName;
-                document.getElementById('certificate-email').textContent = student.email;
-                document.getElementById('certificate-city').textContent = student.city;
-                document.getElementById('certificate-phone').textContent = student.mobile;
+                // Check if this MCQ has been completed
+                const isCompleted = progress[type][mcq.id - 1];
+                const completionClass = isCompleted ? 'completed' : '';
                 
-                document.getElementById('certificate-total').textContent = student.totalQuestions;
-                document.getElementById('certificate-correct').textContent = student.correctAnswers;
-                document.getElementById('certificate-incorrect').textContent = student.incorrectAnswers;
-                document.getElementById('certificate-unanswered').textContent = student.unanswered;
-                document.getElementById('certificate-score').textContent = `Final Score: ${student.finalScore}`;
-                
-                // Determine eligibility
-                let eligibilityTitle = '';
-                let eligibilityContent = '';
-                
-                if (score >= 44) {
-                    eligibilityTitle = 'Free Registration Eligible';
-                    eligibilityContent = 'Congratulations! Based on your score, you are eligible for free registration in the MedPlex Academy session starting December 5, 2025.';
-                } else if (score >= 25) {
-                    eligibilityTitle = 'Registration with 700 RS Payment';
-                    eligibilityContent = 'Based on your score, you can register for the MedPlex Academy session starting December 5, 2025 with a payment of 700 RS for the full three-month session.';
-                } else if (score >= 17) {
-                    eligibilityTitle = 'Registration with 1200 RS Payment';
-                    eligibilityContent = 'Based on your score, you can register for the MedPlex Academy session starting December 5, 2025 with a payment of 1200 RS for the full three-month session.';
-                } else {
-                    eligibilityTitle = 'Not Eligible for Registration';
-                    eligibilityContent = 'Based on your score, you are not currently eligible for registration in the MedPlex Academy session. Please try again in future sessions.';
-                }
-                
-                document.getElementById('eligibility-title').textContent = eligibilityTitle;
-                document.getElementById('eligibility-content').textContent = eligibilityContent;
-                
-                // Show certificate panel
-                document.getElementById('certificate-panel').style.display = 'block';
-            }
-            
-            function loadHighAchievers() {
-                const highAchieversList = document.getElementById('high-achievers-list');
-                highAchieversList.innerHTML = '';
-                
-                // Filter students with 36+ marks
-                const highAchievers = studentsData.filter(student => {
-                    const scoreMatch = student.finalScore.match(/(\d+)\s*\/\s*(\d+)/);
-                    return scoreMatch && parseInt(scoreMatch[1]) >= 36;
-                });
-                
-                // Sort by score (descending) and then by submission time (earliest first)
-                highAchievers.sort((a, b) => {
-                    const scoreA = parseInt(a.finalScore.match(/(\d+)\s*\/\s*(\d+)/)[1]);
-                    const scoreB = parseInt(b.finalScore.match(/(\d+)\s*\/\s*(\d+)/)[1]);
-                    
-                    if (scoreB !== scoreA) {
-                        return scoreB - scoreA;
-                    }
-                    
-                    // If scores are equal, sort by submission date (earliest first)
-                    return new Date(a.submissionDate) - new Date(b.submissionDate);
-                });
-                
-                if (highAchievers.length === 0) {
-                    highAchieversList.innerHTML = '<p style="text-align: center; font-size: 0.486rem; color: var(--text-secondary); padding: 9.72px;">No high achievers found.</p>';
-                    return;
-                }
-                
-                // Find the winner (first person with full marks who submitted earliest)
-                const perfectScores = highAchievers.filter(s => {
-                    const scoreMatch = s.finalScore.match(/(\d+)\s*\/\s*(\d+)/);
-                    return scoreMatch && parseInt(scoreMatch[1]) === 50;
-                });
-                
-                let winner = null;
-                if (perfectScores.length > 0) {
-                    // Sort perfect scorers by submission date (earliest first)
-                    perfectScores.sort((a, b) => new Date(a.submissionDate) - new Date(b.submissionDate));
-                    winner = perfectScores[0];
-                }
-                
-                highAchievers.forEach(student => {
-                    const scoreMatch = student.finalScore.match(/(\d+)\s*\/\s*(\d+)/);
-                    const score = scoreMatch ? parseInt(scoreMatch[1]) : 0;
-                    
-                    const achieverItem = document.createElement('div');
-                    achieverItem.className = 'high-achiever-item';
-                    
-                    let winnerBadge = '';
-                    if (winner && student.accessCode === winner.accessCode) {
-                        winnerBadge = '<span class="winner-badge">200 RS Winner</span>';
-                    }
-                    
-                    achieverItem.innerHTML = `
-                        <div>
-                            <span class="achiever-name">${student.studentName}</span>
-                            ${winnerBadge}
-                            <div style="font-size: 0.405rem; color: var(--text-secondary);">${student.mobile}</div>
+                card.innerHTML = `
+                    <div class="mcq-info">
+                        <div class="mcq-id">MCQ #${mcq.id} ${isCompleted ? '<i class="fas fa-check" style="color: var(--success); margin-left: 4.05px;"></i>' : ''}</div>
+                        <div class="mcq-subject">${type === 'dehydration' ? 'Dehydration of Alkenes' : 'Ozonolysis of Alkenes'}</div>
+                        <div class="mcq-question">${mcq.question}</div>
+                        <div class="mcq-options">
+                            ${mcq.options.map((option, index) => `
+                                <div class="mcq-option ${completionClass}" data-option="${index}">${String.fromCharCode(65 + index)}) ${option}</div>
+                            `).join('')}
                         </div>
-                        <div class="achiever-score">${student.finalScore}</div>
-                    `;
+                        <div class="mcq-explanation">
+                            <div class="explanation-title">Explanation:</div>
+                            <div class="explanation-content">${generateExplanation(mcq)}</div>
+                        </div>
+                    </div>
+                    <div class="mcq-actions">
+                        <button class="btn btn-primary check-answer-btn">
+                            <i class="fas fa-check"></i> Check Answer
+                        </button>
+                        <button class="btn btn-secondary show-explanation-btn">
+                            <i class="fas fa-lightbulb"></i> Show Explanation
+                        </button>
+                    </div>
+                `;
+                
+                // Add event listeners to the buttons
+                const checkAnswerBtn = card.querySelector('.check-answer-btn');
+                const showExplanationBtn = card.querySelector('.show-explanation-btn');
+                const options = card.querySelectorAll('.mcq-option');
+                
+                let selectedOption = null;
+                
+                // If already completed, show the correct answer
+                if (isCompleted) {
+                    const correctOption = card.querySelector(`.mcq-option[data-option="${mcq.correctAnswer}"]`);
+                    correctOption.classList.add('correct');
                     
-                    highAchieversList.appendChild(achieverItem);
+                    // Disable further selection
+                    options.forEach(option => {
+                        option.style.pointerEvents = 'none';
+                    });
+                    
+                    checkAnswerBtn.disabled = true;
+                    checkAnswerBtn.innerHTML = '<i class="fas fa-check"></i> Completed';
+                } else {
+                    options.forEach(option => {
+                        option.addEventListener('click', () => {
+                            // Remove selection from all options
+                            options.forEach(opt => opt.classList.remove('selected'));
+                            
+                            // Select the clicked option
+                            option.classList.add('selected');
+                            selectedOption = parseInt(option.getAttribute('data-option'));
+                        });
+                    });
+                    
+                    checkAnswerBtn.addEventListener('click', () => {
+                        if (selectedOption === null) {
+                            alert('Please select an answer first!');
+                            return;
+                        }
+                        
+                        // Remove previous correct/incorrect classes
+                        options.forEach(option => {
+                            option.classList.remove('correct', 'incorrect');
+                        });
+                        
+                        // Mark the correct answer
+                        const correctOption = card.querySelector(`.mcq-option[data-option="${mcq.correctAnswer}"]`);
+                        correctOption.classList.add('correct');
+                        
+                        // Mark the selected answer if incorrect
+                        if (selectedOption !== mcq.correctAnswer) {
+                            const selectedOptionElement = card.querySelector(`.mcq-option[data-option="${selectedOption}"]`);
+                            selectedOptionElement.classList.add('incorrect');
+                        } else {
+                            // If correct, mark as completed
+                            progress[type][mcq.id - 1] = true;
+                            saveProgress();
+                            updateProgress();
+                            
+                            // Update the card to show completion
+                            const mcqId = card.querySelector('.mcq-id');
+                            mcqId.innerHTML = `MCQ #${mcq.id} <i class="fas fa-check" style="color: var(--success); margin-left: 4.05px;"></i>`;
+                            
+                            // Disable further selection
+                            options.forEach(option => {
+                                option.style.pointerEvents = 'none';
+                            });
+                            
+                            checkAnswerBtn.disabled = true;
+                            checkAnswerBtn.innerHTML = '<i class="fas fa-check"></i> Completed';
+                        }
+                    });
+                }
+                
+                showExplanationBtn.addEventListener('click', () => {
+                    const explanation = card.querySelector('.mcq-explanation');
+                    explanation.classList.toggle('show');
                 });
+                
+                return card;
+            }
+            
+            function generateExplanation(mcq) {
+                let explanationHTML = `<p><strong>Correct Answer:</strong> ${String.fromCharCode(65 + mcq.correctAnswer)}) ${mcq.options[mcq.correctAnswer]}</p>`;
+                explanationHTML += `<p><strong>Why this is correct:</strong> ${mcq.explanation.correct}</p>`;
+                
+                explanationHTML += `<p><strong>Why other options are incorrect:</strong></p><ul>`;
+                for (const [index, reason] of Object.entries(mcq.explanation.incorrect)) {
+                    explanationHTML += `<li><strong>${String.fromCharCode(65 + parseInt(index))})</strong> ${reason}</li>`;
+                }
+                explanationHTML += `</ul>`;
+                
+                return explanationHTML;
+            }
+            
+            function updateProgress() {
+                // Calculate completion counts
+                const dehydrationCompleted = progress.dehydration.filter(Boolean).length;
+                const ozonolysisCompleted = progress.ozonolysis.filter(Boolean).length;
+                const totalCompleted = dehydrationCompleted + ozonolysisCompleted;
+                
+                // Update dehydration progress
+                document.getElementById('dehydration-completed').textContent = dehydrationCompleted;
+                document.getElementById('dehydration-progress').style.width = `${(dehydrationCompleted / dehydrationMCQs.length) * 100}%`;
+                
+                // Update ozonolysis progress
+                document.getElementById('ozonolysis-completed').textContent = ozonolysisCompleted;
+                document.getElementById('ozonolysis-progress').style.width = `${(ozonolysisCompleted / ozonolysisMCQs.length) * 100}%`;
+                
+                // Update overall progress
+                document.getElementById('completed-mcqs').textContent = totalCompleted;
+                document.getElementById('overall-completed').textContent = totalCompleted;
+                document.getElementById('overall-progress').style.width = `${(totalCompleted / (dehydrationMCQs.length + ozonolysisMCQs.length)) * 100}%`;
+                
+                // Update summary
+                document.getElementById('dehydration-summary').textContent = dehydrationCompleted;
+                document.getElementById('ozonolysis-summary').textContent = ozonolysisCompleted;
+                document.getElementById('dehydration-summary-progress').style.width = `${(dehydrationCompleted / dehydrationMCQs.length) * 100}%`;
+                document.getElementById('ozonolysis-summary-progress').style.width = `${(ozonolysisCompleted / ozonolysisMCQs.length) * 100}%`;
+            }
+            
+            function resetProgress() {
+                if (confirm('Are you sure you want to reset all progress? This action cannot be undone.')) {
+                    progress = {
+                        dehydration: Array(dehydrationMCQs.length).fill(false),
+                        ozonolysis: Array(ozonolysisMCQs.length).fill(false)
+                    };
+                    saveProgress();
+                    updateProgress();
+                    loadMCQs();
+                }
+            }
+            
+            function saveProgress() {
+                saveToLocalStorage('chemistryProgress', progress);
+            }
+            
+            function loadProgress() {
+                const savedProgress = getFromLocalStorage('chemistryProgress');
+                if (savedProgress) {
+                    progress = savedProgress;
+                }
             }
             
             function applyAnimations() {
